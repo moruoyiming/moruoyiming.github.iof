@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>JNI 串口通讯库 SerialPort开发封装 - 菅瑞霖&#39;Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="SerialportManagerJNI 串口通讯库 SerialPort开发封装前言  最近工作比较清闲，闲来无事，把原先项目用到的串口通讯项目所涉及到的知识及项目简化出来一个库，方便以后开发新项目。同时希望   对其他小伙伴有所帮助。项目涉及到 ndk工程构建及硬件串口通讯。期间涉及到硬件屏幕功能开发这里不做多介绍。   下面从NDK项目构建开始说起。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JNI 串口通讯库 SerialPort开发封装">
+<meta property="og:url" content="http://yoursite.com/2018/05/10/SerialportManager/index.html">
+<meta property="og:site_name" content="菅瑞霖&#39;Blog">
+<meta property="og:description" content="SerialportManagerJNI 串口通讯库 SerialPort开发封装前言  最近工作比较清闲，闲来无事，把原先项目用到的串口通讯项目所涉及到的知识及项目简化出来一个库，方便以后开发新项目。同时希望   对其他小伙伴有所帮助。项目涉及到 ndk工程构建及硬件串口通讯。期间涉及到硬件屏幕功能开发这里不做多介绍。   下面从NDK项目构建开始说起。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-151610%402x.png">
+<meta property="og:image" content="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-151818%402x.png">
+<meta property="og:image" content="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-155357%402x.png">
+<meta property="og:image" content="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-155822%402x.png">
+<meta property="og:image" content="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-164512%402x.png">
+<meta property="og:image" content="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-181007%402x.png">
+<meta property="og:updated_time" content="2019-02-21T07:25:54.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JNI 串口通讯库 SerialPort开发封装">
+<meta name="twitter:description" content="SerialportManagerJNI 串口通讯库 SerialPort开发封装前言  最近工作比较清闲，闲来无事，把原先项目用到的串口通讯项目所涉及到的知识及项目简化出来一个库，方便以后开发新项目。同时希望   对其他小伙伴有所帮助。项目涉及到 ndk工程构建及硬件串口通讯。期间涉及到硬件屏幕功能开发这里不做多介绍。   下面从NDK项目构建开始说起。">
+<meta name="twitter:image" content="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-151610%402x.png">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="JNI 串口通讯库 SerialPort开发封装" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">首页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/moruoyiming">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-09T16:34:40.000Z">2018-05-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19 分钟 读完 (大约 2817 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                JNI 串口通讯库 SerialPort开发封装
+            
+        </h1>
+        <div class="content">
+            <h1 id="SerialportManager"><a href="#SerialportManager" class="headerlink" title="SerialportManager"></a>SerialportManager</h1><h2 id="JNI-串口通讯库-SerialPort开发封装"><a href="#JNI-串口通讯库-SerialPort开发封装" class="headerlink" title="JNI 串口通讯库 SerialPort开发封装"></a>JNI 串口通讯库 SerialPort开发封装</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  最近工作比较清闲，闲来无事，把原先项目用到的串口通讯项目所涉及到的知识及项目简化出来一个库，方便以后开发新项目。同时希望</p>
+<p>  对其他小伙伴有所帮助。项目涉及到 ndk工程构建及硬件串口通讯。期间涉及到硬件屏幕功能开发这里不做多介绍。</p>
+<p>  下面从NDK项目构建开始说起。<br>    <a id="more"></a></p>
+<p>  NDK是Google为便于Android开发提供的一种原生开发集：Native Development Kit，而且也是一个包含API、构建工具、交叉编译、调<br>  试器、文档示例等一系列的工具集，可以帮助开发者快速开发C（或C++）的动态库，并能自动将so和java应用一起打包成APK。</p>
+<p>  与NDK密切相关的另一个词汇则是JNI，它是NDK开发中的枢纽，Java与底层交互绝大多数都是通过它来完成的，那么接下来看看什么是<br>  JNI?</p>
+<p>  JNI：Java Native Interface 也就是java本地接口，它是一个协议，这个协议用来沟通java代码和本地代码(c/c++)。通过这个<br>  协议，Java类的某些方法可以使用原生实现，同时让它们可以像普通的Java方法一样被调用和使用，而原生方法也可以使用Java对象，<br>  调用和使用Java方法。也就是说，使用JNI这种协议可以实现：java代码调用c/c++代码，而c/c++代码也可以调用java代码。</p>
+<p>  那为什么要使用NDK开发呢？</p>
+<p>  我们都知道，java是半解释型语言，很容易被反汇编后拿到源代码文件，在开发一些重要协议时，我们为了安全起见，使用C语言来编写<br>  这些重要的部分，来增大系统的安全性。</p>
+<p>  在一些复杂性的计算中，要求高性能的场景中，C/C++更加的有效率，代码也更便于复用。</p>
+<p>  当然还有其他的优点，这些都驱使我们选择相对来说高效和安全的DNK来开发我们的应用程序。</p>
+<h3 id="NDK环境搭建"><a href="#NDK环境搭建" class="headerlink" title="NDK环境搭建"></a>NDK环境搭建</h3><h4 id="1-下载NDK"><a href="#1-下载NDK" class="headerlink" title="1.下载NDK"></a>1.下载NDK</h4><p>   首先下载NDK，可以从AndroidStudio中的SDK Manager中下载，也可自己单独下载</p>
+<p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-151610%402x.png" alt="image"></p>
+<p>   点击按钮进入 </p>
+<p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-151818%402x.png" alt="image"></p>
+<p>   或者进入<a href="http://www.androiddevtools.cn/" target="_blank" rel="noopener">http://www.androiddevtools.cn/</a> 下载</p>
+<p>   <a href="https://dl.google.com/android/repository/android-ndk-r16-beta1-windows-x86_64.zip?utm_source=androiddevtools&amp;utm_medium=website?raw=true" target="_blank" rel="noopener">Windows 64-bit</a></p>
+<p>   <a href="https://dl.google.com/android/repository/android-ndk-r16-beta1-darwin-x86_64.zip?utm_source=androiddevtools&amp;utm_medium=website?raw=true" target="_blank" rel="noopener">Mac OS X</a></p>
+<p>   如单独下载</p>
+<pre><code>1). 解压NDK的zip包，注意路径目录不要出现空格和中文，这里建议大家把包解压到SDK目录里面，并命名为ndk-bundle，好处是，启动AS的时候会检查它并直接添加到ndk.dir中，减少我们的配置工作；
+
+2). 配置path : 把解压好的路径添加到环境变量path中；
+
+3). ndk-build：cd到解压后NDK的根目录，执行ndk-build命令。
+</code></pre><h4 id="2-安装配置NDK"><a href="#2-安装配置NDK" class="headerlink" title="2.安装配置NDK"></a>2.安装配置NDK</h4><p>   AndroidStudio 点击File -&gt; Other Settings -&gt; Default Project Strjucture  如图</p>
+<p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-155357%402x.png" alt="image"></p>
+<p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-155822%402x.png" alt="image"></p>
+<p>   到这里NDK配置完成，接下来 开始 NDK 开发。</p>
+<h3 id="NDK项目开发"><a href="#NDK项目开发" class="headerlink" title="NDK项目开发"></a>NDK项目开发</h3><p>   在library 中的 build.gradle  文件中的 defaultConfig 中 配置</p>
+<pre><code>ndk {
+        moduleName &quot;serial_port&quot;
+        // 设置支持的SO库架构
+        abiFilters &apos;armeabi&apos;, &apos;x86&apos;, &apos;armeabi-v7a&apos;, &apos;x86_64&apos;, &apos;arm64-v8a&apos;
+    }
+</code></pre><p>   在android 中配置</p>
+<pre><code>sourceSets { main { jni.srcDirs = [&apos;src/main/jni&apos;, &apos;src/main/jni/&apos;] } }
+   externalNativeBuild {
+       ndkBuild {
+           path &apos;src/main/jni/Android.mk&apos;
+       }
+   }
+</code></pre><p>   如图</p>
+<p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-164512%402x.png" alt="image"></p>
+<p>   Android.mk 文件中配置如下内容   <a href="https://www.cnblogs.com/reality-soul/p/6893248.html" target="_blank" rel="noopener">Android.mk用法详解</a></p>
+<pre><code>#
+# Copyright 2009 Cedric Priscal
+# 
+# Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License. 
+#
+
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+TARGET_PLATFORM := android-3
+LOCAL_MODULE    := serial_port      //项目名称
+LOCAL_SRC_FILES := SerialPort.c     //底层c
+LOCAL_LDLIBS    := -llog
+
+include $(BUILD_SHARED_LIBRARY)
+</code></pre><p>   在main目录下创建一个jni文件目录，并将 Android.mk 文件放到jni文件下</p>
+<p>   直接使用网上 SerialPort.java 类，里边封装底层方法</p>
+<pre><code>package com.serialport.library.core;
+
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+/**
+* Created by Jian on 2017/8/7.
+* 用来加载SO文件，通过JNI的方式打开关闭串口
+*/
+public class SerialPort {
+
+   private static final String TAG = &quot;SerialPort&quot;;
+   /*
+    * Do not remove or rename the field mFd: it is used by native method close();
+    */
+   private FileDescriptor mFd;
+   private FileInputStream mFileInputStream;
+   private FileOutputStream mFileOutputStream;
+
+   public SerialPort(File device, int baudrate, int flags) throws SecurityException, IOException {
+
+       /* Check access permission */
+       if (!device.canRead() || !device.canWrite()) {
+           try {
+               /* Missing read/write permission, trying to chmod the file */
+               Process su;
+               su = Runtime.getRuntime().exec(&quot;/system/bin/su&quot;);
+               String cmd = &quot;chmod 666 &quot; + device.getAbsolutePath() + &quot;\n&quot;
+                       + &quot;exit\n&quot;;
+               su.getOutputStream().write(cmd.getBytes());
+               if ((su.waitFor() != 0) || !device.canRead()
+                       || !device.canWrite()) {
+                   throw new SecurityException();
+
+               }
+           } catch (Exception e) {
+               e.printStackTrace();
+               throw new SecurityException();
+           }
+       }
+
+       mFd = open(device.getAbsolutePath(), baudrate, flags);
+       if (mFd == null) {
+           throw new IOException();
+       }
+       mFileInputStream = new FileInputStream(mFd);
+       mFileOutputStream = new FileOutputStream(mFd);
+   }
+
+   // Getters and setters
+   public InputStream getInputStream() {
+       return mFileInputStream;
+   }
+
+   public OutputStream getOutputStream() {
+       return new FileOutputStream(mFd);
+   }
+
+   // JNI
+   private native static FileDescriptor open(String path, int baudrate, int flags);
+
+   public native void close();
+
+   static {
+       System.loadLibrary(&quot;serial_port&quot;);
+   }
+}
+</code></pre><p>   点击”View-&gt;Tool Windows-&gt;Terminal”，即在Studio中进行终端命令行工具.执行如下命令生成c语言头文件:</p>
+<p>   cd 到目录java/ 下执行 javah -o SerialPort.h -jni com.serialport.library.core.SerialPort</p>
+<pre><code>javah -o SerialPort.h -jni com.serialport.library.core.SerialPort
+</code></pre><p>   com.serialport.library.core 为包名。</p>
+<p>   SerialPort.h 文件如下</p>
+<pre><code>/* DO NOT EDIT THIS FILE - it is machine generated */
+#include &lt;jni.h&gt;
+/* Header for class com_serialport_library_core_SerialPort */
+
+#ifndef _Included_com_serialport_library_core_SerialPort
+#define _Included_com_serialport_library_core_SerialPort
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+/*
+ * Class:     com_serialport_library_core_SerialPort
+ * Method:    open
+ * Signature: (Ljava/lang/String;II)Ljava/io/FileDescriptor;
+ */
+JNIEXPORT jobject JNICALL Java_com_serialport_library_core_SerialPort_open
+  (JNIEnv *, jclass, jstring, jint, jint);
+
+/*
+ * Class:     com_serialport_library_core_SerialPort
+ * Method:    close
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_serialport_library_core_SerialPort_close
+  (JNIEnv *, jobject);
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+</code></pre><p>   并把 SerialPort.h 头文件转移到jni文件夹下</p>
+<p>   创建实现头文件的.C源文件，将 com_serialport_library_core 为SerialPort.java 文件位置，将该 path 替换成其他 项目包名 符号.换成_</p>
+<pre><code>/*
+ * Copyright 2009-2011 Cedric Priscal
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include &lt;termios.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;string.h&gt;
+#include &lt;jni.h&gt;
+#include &quot;SerialPort.h&quot;
+#include &quot;android/log.h&quot;
+static const char *TAG = &quot;serial_port&quot;;
+#define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO,  TAG, fmt, ##args)
+#define LOGD(fmt, args...) __android_log_print(ANDROID_LOG_DEBUG, TAG, fmt, ##args)
+#define LOGE(fmt, args...) __android_log_print(ANDROID_LOG_ERROR, TAG, fmt, ##args)
+
+static speed_t getBaudrate(jint baudrate) {
+    switch (baudrate) {
+        case 0:
+            return B0;
+
+            ...
+
+        default:
+            return -1;
+    }
+}
+
+/*
+ * Class:     com_serialport_library_core_SerialPort
+ * Method:    open
+ * Signature: (Ljava/lang/String;II)Ljava/io/FileDescriptor;
+ */
+JNIEXPORT jobject JNICALL Java_com_serialport_library_core_SerialPort_open
+        (JNIEnv *env, jclass thiz, jstring path, jint baudrate, jint flags) {
+    int fd;
+    speed_t speed;
+    jobject mFileDescriptor;
+
+    /* Check arguments */
+    {
+        speed = getBaudrate(baudrate);
+        if (speed == -1) {
+            /* TODO: throw an exception */
+            LOGE(&quot;Invalid baudrate&quot;);
+            return NULL;
+        }
+    }
+
+    /* Opening device */
+    {
+        jboolean iscopy;
+        const char *path_utf = (*env)-&gt;GetStringUTFChars(env, path, &amp;iscopy);
+        LOGD(&quot;Opening serial port %s with flags 0x%x&quot;, path_utf, O_RDWR | flags);
+        fd = open(path_utf, O_RDWR | flags);
+        LOGD(&quot;open() fd = %d&quot;, fd);
+        (*env)-&gt;ReleaseStringUTFChars(env, path, path_utf);
+        if (fd == -1) {
+            /* Throw an exception */
+            LOGE(&quot;Cannot open port&quot;);
+            /* TODO: throw an exception */
+            return NULL;
+        }
+    }
+
+    /* Configure device */
+    {
+        struct termios cfg;
+        LOGD(&quot;Configuring serial port&quot;);
+        if (tcgetattr(fd, &amp;cfg)) {
+            LOGE(&quot;tcgetattr() failed&quot;);
+            close(fd);
+            /* TODO: throw an exception */
+            return NULL;
+        }
+
+        cfmakeraw(&amp;cfg);
+        cfsetispeed(&amp;cfg, speed);
+        cfsetospeed(&amp;cfg, speed);
+
+        if (tcsetattr(fd, TCSANOW, &amp;cfg)) {
+            LOGE(&quot;tcsetattr() failed&quot;);
+            close(fd);
+            /* TODO: throw an exception */
+            return NULL;
+        }
+    }
+
+    /* Create a corresponding file descriptor */
+    {
+        jclass cFileDescriptor = (*env)-&gt;FindClass(env, &quot;java/io/FileDescriptor&quot;);
+        jmethodID iFileDescriptor = (*env)-&gt;GetMethodID(env, cFileDescriptor, &quot;&lt;init&gt;&quot;, &quot;()V&quot;);
+        jfieldID descriptorID = (*env)-&gt;GetFieldID(env, cFileDescriptor, &quot;descriptor&quot;, &quot;I&quot;);
+        mFileDescriptor = (*env)-&gt;NewObject(env, cFileDescriptor, iFileDescriptor);
+        (*env)-&gt;SetIntField(env, mFileDescriptor, descriptorID, (jint) fd);
+    }
+
+    return mFileDescriptor;
+}
+
+/*
+ * Class:     com_serialport_library_core_SerialPort
+ * Method:    close
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_serialport_library_core_SerialPort_close
+        (JNIEnv *env, jobject thiz) {
+    jclass SerialPortClass = (*env)-&gt;GetObjectClass(env, thiz);
+    jclass FileDescriptorClass = (*env)-&gt;FindClass(env, &quot;java/io/FileDescriptor&quot;);
+
+    jfieldID mFdID = (*env)-&gt;GetFieldID(env, SerialPortClass, &quot;mFd&quot;, &quot;Ljava/io/FileDescriptor;&quot;);
+    jfieldID descriptorID = (*env)-&gt;GetFieldID(env, FileDescriptorClass, &quot;descriptor&quot;, &quot;I&quot;);
+
+    jobject mFd = (*env)-&gt;GetObjectField(env, thiz, mFdID);
+    jint descriptor = (*env)-&gt;GetIntField(env, mFd, descriptorID);
+
+    LOGD(&quot;close(fd = %d)&quot;, descriptor);
+    close(descriptor);
+}
+</code></pre><h2 id="到此-NDK-项目搭建完成。接下来-介绍一下-SerialPortManager-类库"><a href="#到此-NDK-项目搭建完成。接下来-介绍一下-SerialPortManager-类库" class="headerlink" title="到此 NDK 项目搭建完成。接下来 介绍一下 SerialPortManager 类库"></a>到此 NDK 项目搭建完成。接下来 介绍一下 SerialPortManager 类库</h2><p>   下图为类库的介绍</p>
+<p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-181007%402x.png" alt="image"></p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/core/SerialPort.java" target="_blank" rel="noopener">SerialPort.java</a>  封装底层开关串口方法</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/core/SerialPortFinder.java" target="_blank" rel="noopener">SerialPortFinder.java</a> 获取所有串口方法</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/listener/OnS3DataReceiverListener.java" target="_blank" rel="noopener">OnS3DataReceiverListener.java</a> 和 <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/listener/OnS6DataReceiverListener.java" target="_blank" rel="noopener">OnS6DataReceiverListener.java</a>  是串口响应数据监听。当接收到串口数据会调</p>
+<p>   接口方法，我们的硬件设备S3口监听主板数据，S6口监听硬件屏幕数据。</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/protocol/BaseProtocol.java" target="_blank" rel="noopener">BaseProtocol.java</a> 提供指令封装方法。根据各个设备硬件串口协议，继承、封装。</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/SerialportManager.java" target="_blank" rel="noopener">SerialportManager.java</a>  串口管理对象</p>
+<h2 id="SerialportManager-java"><a href="#SerialportManager-java" class="headerlink" title="SerialportManager.java"></a>SerialportManager.java</h2><p>   串口管理对象，该对象为单例。底层对 SerialPort  进行封装、管理。</p>
+<pre><code>private SerialPort mSerialPort; 
+
+mSerialPort = new SerialPort(new File(path), baudrate, 0);//根据串口名，波特率 生成串口管理对象
+
+mOutputStream = mSerialPort.getOutputStream(); //获取串口的输出流
+
+mInputStream = mSerialPort.getInputStream();  //获取串口的输入流
+</code></pre><p>   开启一个新线程循环读取串口信息</p>
+<pre><code>if (mReadThread == null) {
+     mReadThread = new ReadThread();
+     mReadThread.start();
+}
+</code></pre><p>   线程方法中通过输入流获取串口数据 返回数据为byte数组，当获取到数据回调 onS3DataReceiverListener 接口方法</p>
+<pre><code>private class ReadThread extends Thread {
+
+    @Override
+    public void run() {
+        super.run();
+        while (!isStop &amp;&amp; !isInterrupted()) {
+            int size;
+            try {
+                if (mInputStream == null) {
+                    return;
+                }
+                byte[] buffer = new byte[64];
+                size = mInputStream.read(buffer);
+                if (size &gt; 0) {
+                    if (null != onS3DataReceiverListener) {
+                        onS3DataReceiverListener.onS3DataReceive(buffer, size);
+                    }
+                }
+                Thread.sleep(10);
+            } catch (Exception e) {
+                Log.i(&quot;readthread&quot;, &quot;throw exception !&quot; + e.toString());
+                e.printStackTrace();
+                return;
+            }
+        }
+    }
+}
+</code></pre><p>  下面介绍一下如何使用类库，我们项目串口用的是S3、S6口，如果想用其他串口 请修改SerialportManager中的path/screenpath<br>  如果baudrate也想改也修改对应的数值即可。</p>
+<pre><code>       SerialportManager.getInstance().setOnS3DataReceiverListener(this);//设置主板串口回调
+       SerialportManager.getInstance().setOnS6DataReceiverListener(this);//设置屏幕串口回调
+       SerialportManager.getInstance().InitThread();//初始化对应 读写线程
+       //因有不同主板类型，屏幕类型。这里对其做了一次封装
+       SenderManager.getInstance().getSender().sendStartDetect();
+
+设备开机会轮训配置串口，根据主板类型屏幕类型，生成对应管理对象。然后进行串口数据通讯。当我们串口读到我们的输入数据，会
+想onS3DataReceiverListener.onS3DataReceive 回调返回数据。再界面我们拿到数据坐相应操作
+
+       @Override
+         public void onS3DataReceive(byte[] buffer, int size) {
+             byte[] mBufferTemp = new byte[size];
+             System.arraycopy(buffer, 0, mBufferTemp, 0, size);
+             int length = mBufferTemp.length - 1;
+             String tempdata = TypeConversion.bytes2HexString(mBufferTemp);
+             Log.i(&quot;serialport&quot;,tempdata);
+         }
+
+
+ 当界面跳转时要及时将OnS3DataReceiverListener、OnS6DataReceiverListener监听remove掉，避免造成内存泄漏。
+
+        @Override
+           protected void onPause() {
+               super.onPause();
+               SerialportManager.getInstance().removeOnS3DataReceiverListener();
+               SerialportManager.getInstance().removeOnS6DataReceiverListener();
+           }
+</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/06/06/Android经典蓝牙通讯传输DEMO/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Android 经典蓝牙通讯传输Demo</span>
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="RuiLin Jian">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        RuiLin Jian
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        The harder you work, the luckier you will be.
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>BeiJing</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        4
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        2
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/moruoyiming">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/moruoyiming">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Instagram" href="https://www.instagram.com/jianzeyicong/?hl=en">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/moruoyiming" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Github</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.jianshu.com/u/0352e2f94969" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">简书</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.jianshu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://tuchong.com/2353207/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图虫</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">tuchong.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/安卓开发/">
+            <span class="level-start">
+                <span class="level-item">安卓开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/科学上网/">
+            <span class="level-start">
+                <span class="level-item">科学上网</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="快速手动搭建SS服务器简明详细教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-21T06:59:50.224Z">2019-02-21</time></div>
+                    <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/20/SSH常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH通用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T12:35:05.643Z">2019-02-20</time></div>
+                    <a href="/2019/02/20/SSH常用命令/" class="has-link-black-ter is-size-6">SSH通用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 经典蓝牙通讯传输Demo">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-06T09:04:50.992Z">2018-06-06</time></div>
+                    <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="has-link-black-ter is-size-6">Android 经典蓝牙通讯传输Demo</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/05/10/SerialportManager/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JNI 串口通讯库 SerialPort开发封装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-05-09T16:34:40.000Z">2018-05-10</time></div>
+                    <a href="/2018/05/10/SerialportManager/" class="has-link-black-ter is-size-6">JNI 串口通讯库 SerialPort开发封装</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="快速手动搭建SS服务器简明详细教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-21T06:59:50.224Z">2019-02-21</time></div>
+                    <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/20/SSH常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH通用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T12:35:05.643Z">2019-02-20</time></div>
+                    <a href="/2019/02/20/SSH常用命令/" class="has-link-black-ter is-size-6">SSH通用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 经典蓝牙通讯传输Demo">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-06T09:04:50.992Z">2018-06-06</time></div>
+                    <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="has-link-black-ter is-size-6">Android 经典蓝牙通讯传输Demo</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/05/10/SerialportManager/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JNI 串口通讯库 SerialPort开发封装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-05-09T16:34:40.000Z">2018-05-10</time></div>
+                    <a href="/2018/05/10/SerialportManager/" class="has-link-black-ter is-size-6">JNI 串口通讯库 SerialPort开发封装</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="JNI 串口通讯库 SerialPort开发封装" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Brigitte Jian&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

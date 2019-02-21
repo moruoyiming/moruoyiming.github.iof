@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Android 经典蓝牙通讯传输Demo - 菅瑞霖&#39;Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="BlueUtils经典蓝牙搜索，连接，数据传输小DEMO 通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。 https://www.jianshu.com/p/f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 经典蓝牙通讯传输Demo">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/Android经典蓝牙通讯传输DEMO/index.html">
+<meta property="og:site_name" content="菅瑞霖&#39;Blog">
+<meta property="og:description" content="BlueUtils经典蓝牙搜索，连接，数据传输小DEMO 通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。 https://www.jianshu.com/p/f">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-37-407_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-50-702_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-07-909_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-16-064_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-31-043_com.calypso.bu.png">
+<meta property="og:updated_time" content="2019-02-21T07:25:28.346Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 经典蓝牙通讯传输Demo">
+<meta name="twitter:description" content="BlueUtils经典蓝牙搜索，连接，数据传输小DEMO 通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。 https://www.jianshu.com/p/f">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-37-407_com.calypso.bu.png">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Android 经典蓝牙通讯传输Demo" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">首页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/moruoyiming">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-06-06T09:04:50.992Z">2018-06-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 分钟 读完 (大约 2398 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Android 经典蓝牙通讯传输Demo
+            
+        </h1>
+        <div class="content">
+            <h1 id="BlueUtils"><a href="#BlueUtils" class="headerlink" title="BlueUtils"></a>BlueUtils</h1><p>经典蓝牙搜索，连接，数据传输小DEMO</p>
+<p>通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。</p>
+<p><a href="https://www.jianshu.com/p/fc46c154eb77" target="_blank" rel="noopener">https://www.jianshu.com/p/fc46c154eb77</a> (经典蓝牙)  <a href="https://www.jianshu.com/p/3a372af38103" target="_blank" rel="noopener">https://www.jianshu.com/p/3a372af38103</a> (BLE蓝牙)<br><a id="more"></a></p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>  发现设备-&gt;配对/绑定设备-&gt;建立连接-&gt;数据通信</p>
+<p>  经典蓝牙和低功耗蓝牙除了配对/绑定这个环节是一样的之外，其它三个环节都是不同的。</p>
+<h1 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h1><p><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-37-407_com.calypso.bu.png" alt="image"></p>
+<p><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-50-702_com.calypso.bu.png" alt="image"><br><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-07-909_com.calypso.bu.png" alt="image"><br><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-16-064_com.calypso.bu.png" alt="image"><br><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-31-043_com.calypso.bu.png" alt="image"></p>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><p>  公司最近在要做一个蓝牙与串口通讯的项目，然后就涉及到手机端与蓝牙的连接及数据交互。大致需求就是通过手机搜索硬件蓝牙<br>  设备，然后连接上蓝牙，通过手机端的指令消息来获取串口信息，在通过蓝牙返回数据到手机端。在这之前看了一些开源的项目，<br>  包括BluetoothKit，FastBle，BluetoothHelper等其中BluetoothKit和FastBle只支持BLE 模式蓝牙，因为硬件的模式是<br>  经典模式，后来自己在两个项目的基础上做了一些修改，然后可以搜索到经典蓝牙。但是怎么也是连接不上我们的硬件设备。（应<br>  该是底层不是经典蓝牙连接导致。）后来发现了BluetoothHelper项目。在这个项目的基础上做了一些修改及优化 ，能够满足<br>  项目需求，现在将这个项目做了分包及优化。然后在这分享自己的一些踩坑心得。</p>
+<h1 id="第一步：声明所需要的权限"><a href="#第一步：声明所需要的权限" class="headerlink" title="第一步：声明所需要的权限"></a>第一步：声明所需要的权限</h1><pre><code>&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot;/&gt; 使用蓝牙所需要的权限
+&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&gt; 使用扫描和设置蓝牙的权限（申明这一个权限必须申明上面一个权限）
+
+在Android5.0之前，是默认申请GPS硬件功能的。而在Android 5.0 之后，需要在manifest 中申明GPS硬件模块功能的使用。
+
+    &lt;!-- Needed only if your app targets Android 5.0 (API level 21) or higher. --&gt;
+    &lt;uses-feature android:name=&quot;android.hardware.location.gps&quot; /&gt;
+
+在 Android 6.0 及以上，还需要打开位置权限。如果应用没有位置权限，蓝牙扫描功能不能使用（其它蓝牙操作例如连接蓝牙设备和写入数据不受影响）。
+
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;/&gt;
+</code></pre><h1 id="第二步：初始化实例"><a href="#第二步：初始化实例" class="headerlink" title="第二步：初始化实例"></a>第二步：初始化实例</h1><pre><code>在页面首先初始化一个BlueManager。
+
+private BlueManager bluemanage;
+
+bluemanage = BlueManager.getInstance(getApplicationContext());
+</code></pre><h1 id="第三步：设置实例监听"><a href="#第三步：设置实例监听" class="headerlink" title="第三步：设置实例监听"></a>第三步：设置实例监听</h1><p>   然后为这个蓝牙管理器设置监听(OnSearchDeviceListener，OnConnectListener，OnSendMessageListener，OnReceiveMessageListener)</p>
+<pre><code>/**
+    * 初始化蓝牙管理，设置监听
+    */
+   public void initBlueManager() {
+       bluemanage = BlueManager.getInstance(getApplicationContext());
+       bluemanage.setOnSearchDeviceListener(onSearchDeviceListener);
+       bluemanage.setOnConnectListener(onConnectListener);
+       bluemanage.setOnSendMessageListener(onSendMessageListener);
+       bluemanage.setOnReceiveMessageListener(onReceiveMessageListener);
+       bluemanage.requestEnableBt();
+   }
+</code></pre><h1 id="第四步：开启蓝牙搜索蓝牙设备"><a href="#第四步：开启蓝牙搜索蓝牙设备" class="headerlink" title="第四步：开启蓝牙搜索蓝牙设备"></a>第四步：开启蓝牙搜索蓝牙设备</h1><pre><code>通过调用 bluemanage.requestEnableBt()开启蓝牙，
+
+调用searchDevices 获取蓝牙设备。在做蓝牙操作前，要确保各个监听器已经设置好。
+
+搜索监听如下：
+
+      onSearchDeviceListener =new OnSearchDeviceListener() {
+                @Override
+                public void onStartDiscovery() {
+                    Log.d(TAG, &quot;onStartDiscovery()&quot;);
+                }
+
+                @Override
+                public void onNewDeviceFound(BluetoothDevice device) {
+                    Log.d(TAG, &quot;new device: &quot; + device.getName() + &quot; &quot; + device.getAddress());
+                }
+
+                @Override
+                public void onSearchCompleted(List&lt;BluetoothDevice&gt; bondedList, List&lt;BluetoothDevice&gt; newList) {
+                    Log.d(TAG, &quot;SearchCompleted: bondedList&quot; + bondedList.toString());
+                    Log.d(TAG, &quot;SearchCompleted: newList&quot; + newList.toString());
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+</code></pre><p>   通过 BlueManager里的searchDevices方法，里边其实就是获取了一个BluetoothAdapter然后，通过调用mBluetoothAda<br>   pter.startDiscovery()方法来搜索经典蓝牙设备。这里如果调用 mBluetoothAdapter.startLeScan(mLeScanCallback);<br>   搜索的就是BLE蓝牙。然后在这之前需要动态注册一个BroadcastReceiver来监听 蓝牙的搜索情况，在通过onReceive中去判<br>   断设备的类型，是不是新设备，是不是已经连接过。将设备加入集合当中。</p>
+<p>   搜索代码如下</p>
+<pre><code>/**
+ * discovery the devices.
+ */
+public void searchDevices() {
+    try {
+        if (mCurrStatus == STATUS.FREE) {
+            mCurrStatus = STATUS.DISCOVERING;
+            checkNotNull(mOnSearchDeviceListener);
+            if (mBondedList == null) mBondedList = new ArrayList&lt;&gt;();
+            if (mNewList == null) mNewList = new ArrayList&lt;&gt;();
+            if (mBluetoothAdapter == null) {
+                mOnSearchDeviceListener.onError(new NullPointerException(DEVICE_HAS_NOT_BLUETOOTH_MODULE));
+                return;
+            }
+            if (mReceiver == null) mReceiver = new Receiver();
+            // ACTION_FOUND
+            IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+            mContext.registerReceiver(mReceiver, filter);
+            // ACTION_DISCOVERY_FINISHED
+            filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+            mContext.registerReceiver(mReceiver, filter);
+            mNeed2unRegister = true;
+            mBondedList.clear();
+            mNewList.clear();
+            if (mBluetoothAdapter.isDiscovering())  //先判断是否在扫描
+                mBluetoothAdapter.cancelDiscovery();//取消扫描
+            mBluetoothAdapter.startDiscovery();     //开始扫描蓝牙
+            mOnSearchDeviceListener.onStartDiscovery();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+</code></pre><h1 id="第五步：连接蓝牙设备"><a href="#第五步：连接蓝牙设备" class="headerlink" title="第五步：连接蓝牙设备"></a>第五步：连接蓝牙设备</h1><p>   当调用connectDevice(mac)方法时，因为连接蓝牙是一很耗时的操作，所以需要开启一个线程去连接蓝牙。</p>
+<pre><code> /**
+  * 连接bluetooth
+  *
+  * @param mac
+  */
+ public void connectDevice(String mac) {
+     try {
+         if (mCurrStatus != STATUS.CONNECTED) {
+             if (mac == null || TextUtils.isEmpty(mac))
+                 throw new IllegalArgumentException(&quot;mac address is null or empty!&quot;);
+             if (!BluetoothAdapter.checkBluetoothAddress(mac))
+                 throw new IllegalArgumentException(&quot;mac address is not correct! make sure it&apos;s upper case!&quot;);
+             if (mReadable = false) {
+                 mReadable = true;
+             }
+             if (mWritable = false) {
+                 mWritable = true;
+             }
+             if (onConnectListener != null) {
+                 onConnectListener.onConnectStart();
+                 ConnectDeviceRunnable connectDeviceRunnable = new ConnectDeviceRunnable(mac);
+                 checkNotNull(mExecutorService);
+                 mExecutorService.submit(connectDeviceRunnable);
+             }
+         } else {
+             Log.i(&quot;blue&quot;, &quot;the blue is connected !&quot;);
+         }
+     } catch (IllegalArgumentException e) {
+         e.printStackTrace();
+     }
+ }
+
+在连接的线程run方法中，通过调用mBluetoothAdapter.getRemoteDevice 获取远程蓝牙信息，通过
+createInsecureRfcommSocketToServiceRecord获得一个与远程蓝牙的socket连接。通过这个socket连接获取输入
+流和输出流进行数据的读写。
+
+      if (onConnectListener == null) {
+            Log.i(&quot;blue&quot;, &quot;the connectListener is null !&quot;);
+            return;
+        }
+        BluetoothDevice remoteDevice = mBluetoothAdapter.getRemoteDevice(mac);
+        mBluetoothAdapter.cancelDiscovery();
+        mCurrStatus = STATUS.FREE;
+        Log.d(TAG, &quot;prepare to connect: &quot; + remoteDevice.getAddress() + &quot; &quot; + remoteDevice.getName());
+        mSocket = remoteDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(Constants.STR_UUID));
+        onConnectListener.onConnectting();
+        mSocket.connect();
+        mInputStream = mSocket.getInputStream();
+        mOutputStream = mSocket.getOutputStream();
+        mCurrStatus = STATUS.CONNECTED;
+        onConnectListener.onConectSuccess();
+</code></pre><h1 id="第六步：向蓝牙设备发送消息"><a href="#第六步：向蓝牙设备发送消息" class="headerlink" title="第六步：向蓝牙设备发送消息"></a>第六步：向蓝牙设备发送消息</h1><pre><code>当设备连接成功之后，就可以给蓝牙设备发送消息了。 通过调用bluemanage.sendMessage(MessageBean mesaage，
+needResponse)方法，在bluemange里会开起一个WriteRunnable写线程和一个ReadRunnable去获取输入流和输出流
+的实时数据，读线程只会在第一次发消息时初始化一次。以后都是用这个线程去读从蓝牙返回的数据。写数据的线程
+在每次调用的时候都会从新初始化。(待优化)
+
+ 在WriteRunnable中的润写数据
+   writer.write(item.text);
+   writer.newLine();
+   writer.flush();
+
+在WriteRunnable 的run方法中通过mOutputStream流将数据传送给蓝牙设备,当蓝牙接受到消息之后会和串口进行
+通信，具体的通信协议是根据各个厂商自己协商的。当串口接受数据执行操作，获取数据然后在返回数据给蓝牙，蓝
+牙也就有返回数据。
+</code></pre><h1 id="第七步：从蓝牙设备读取消息"><a href="#第七步：从蓝牙设备读取消息" class="headerlink" title="第七步：从蓝牙设备读取消息"></a>第七步：从蓝牙设备读取消息</h1><pre><code>在ReadRunnable中从mInputStream里不断的读取数据。这里有一个问题，就是有的时候从蓝牙
+口读取的数据并不是一个完整的数据，这里是一个坑。首先你需要知道你需要什么数据，什么格式，数据的长度。这
+里我们的数据的格式类似是一帧一帧，而且我们的帧长度固定大小是10。那么我们就可以在这里做一些你想做的事了。
+</code></pre><h1 id="坑-有时候从蓝牙socket-中读取的数据不完整"><a href="#坑-有时候从蓝牙socket-中读取的数据不完整" class="headerlink" title="坑 有时候从蓝牙socket 中读取的数据不完整"></a>坑 有时候从蓝牙socket 中读取的数据不完整</h1><pre><code>读数据不完整，是因为我们开启线程之后会一直读，有时候蓝牙并没有返回数据，或者没有返回完整数据，这个时候
+我们需要在这做一些特殊处理。
+
+        int count = 0;
+        while (count == 0) {
+            count = stream.available();//输入流中的数据个数。
+        }
+
+通过以上代码可以确保读的数据不会是0。通过下边的代码可以确保读到完整数据之后才会走我的回调，保证了数据
+的完整性。这里的what只是我用来区分当前读到的数据是进度信息，还是真正想要的信息。
+
+        if (onReceiveMessageListener == null) {
+            Log.i(&quot;blue&quot;, &quot;the receiverMessageListener is null !&quot;);
+            return;
+        }
+        mReadable = true;
+        InputStream stream = mInputStream;
+        while (mCurrStatus != STATUS.CONNECTED &amp;&amp; mReadable) ;
+        checkNotNull(stream);
+        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+        StringBuilder builder = new StringBuilder();
+        while (mReadable) {
+            int count = 0;
+            while (count == 0) {
+                count = stream.available();//输入流中的数据个数。
+            }
+            if (count == 10 &amp;&amp; what) {
+                int num = stream.read(buffer);
+                String progress = TypeConversion.bytesToHexStrings(buffer);
+                Log.i(&quot;progress&quot;, progress);
+                onReceiveMessageListener.onProgressUpdate(progress, 0);
+            } else if (count &gt;= 10) {
+                what = false;
+                int num = stream.read(buffer);
+                String detect = TypeConversion.bytesToHexStrings(buffer);
+                builder.append(detect);
+                Log.i(&quot;detect&quot;, detect);
+                if (detect.endsWith(&quot;04 &quot;)) {
+                    number++;
+                }
+                if (number == 5) {
+                    onReceiveMessageListener.onDetectDataFinish();
+                    onReceiveMessageListener.onNewLine(builder.toString().trim());
+                    builder.delete(0, builder.length());
+                } else {
+                    onReceiveMessageListener.onDetectDataUpdate(detect);
+                }
+            }
+        }
+
+ 当读到满足条件的完整数据，就会调用ReceiveMessageListener 中的各个方法。到这里从蓝牙读取数据的流程，
+ 大致介绍完。
+</code></pre><h1 id="下边是BlueManager提供的一些方法："><a href="#下边是BlueManager提供的一些方法：" class="headerlink" title="下边是BlueManager提供的一些方法："></a>下边是BlueManager提供的一些方法：</h1><pre><code>requestEnableBt()    开启蓝牙
+
+searchDevices()      搜索蓝牙设备
+
+connectDevice()      连接蓝牙设备
+
+closeDevice()        断开蓝牙连接
+
+sendMessage()        发送消息
+
+close()              关闭销毁蓝牙
+</code></pre><h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><pre><code>BlueManager大概的使用流程及大致原理就说到这里，口才不是很好，平常也不怎么写博客，有什么问题大家可以
+探讨一下。项目代码部分参考BluetoothHelper 项目，在此基础上做了一些分包优化。如有雷同，不属巧合，
+我就是抄的你的。哈哈哈哈~~  希望对那些在踩蓝牙坑的小伙伴有帮助~~~
+</code></pre><h1 id="Contact-Me"><a href="#Contact-Me" class="headerlink" title="Contact Me"></a>Contact Me</h1><pre><code>QQ: 798774875
+Email: moruoyiming123@gmail.com
+GitHub: https://github.com/moruoyiming
+</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/20/SSH常用命令/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">SSH通用命令</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/05/10/SerialportManager/">
+                <span class="level-item">JNI 串口通讯库 SerialPort开发封装</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="RuiLin Jian">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        RuiLin Jian
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        The harder you work, the luckier you will be.
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>BeiJing</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        4
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        2
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/moruoyiming">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/moruoyiming">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Instagram" href="https://www.instagram.com/jianzeyicong/?hl=en">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="http://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="http://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/moruoyiming" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Github</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.jianshu.com/u/0352e2f94969" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">简书</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.jianshu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://tuchong.com/2353207/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">图虫</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">tuchong.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/安卓开发/">
+            <span class="level-start">
+                <span class="level-item">安卓开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/科学上网/">
+            <span class="level-start">
+                <span class="level-item">科学上网</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="快速手动搭建SS服务器简明详细教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-21T06:59:50.224Z">2019-02-21</time></div>
+                    <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/20/SSH常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH通用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T12:35:05.643Z">2019-02-20</time></div>
+                    <a href="/2019/02/20/SSH常用命令/" class="has-link-black-ter is-size-6">SSH通用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 经典蓝牙通讯传输Demo">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-06T09:04:50.992Z">2018-06-06</time></div>
+                    <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="has-link-black-ter is-size-6">Android 经典蓝牙通讯传输Demo</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/05/10/SerialportManager/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JNI 串口通讯库 SerialPort开发封装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-05-09T16:34:40.000Z">2018-05-10</time></div>
+                    <a href="/2018/05/10/SerialportManager/" class="has-link-black-ter is-size-6">JNI 串口通讯库 SerialPort开发封装</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="快速手动搭建SS服务器简明详细教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-21T06:59:50.224Z">2019-02-21</time></div>
+                    <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/20/SSH常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH通用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T12:35:05.643Z">2019-02-20</time></div>
+                    <a href="/2019/02/20/SSH常用命令/" class="has-link-black-ter is-size-6">SSH通用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android 经典蓝牙通讯传输Demo">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-06T09:04:50.992Z">2018-06-06</time></div>
+                    <a href="/2018/06/06/Android经典蓝牙通讯传输DEMO/" class="has-link-black-ter is-size-6">Android 经典蓝牙通讯传输Demo</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/05/10/SerialportManager/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JNI 串口通讯库 SerialPort开发封装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-05-09T16:34:40.000Z">2018-05-10</time></div>
+                    <a href="/2018/05/10/SerialportManager/" class="has-link-black-ter is-size-6">JNI 串口通讯库 SerialPort开发封装</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Android 经典蓝牙通讯传输Demo" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Brigitte Jian&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
