@@ -87,6 +87,10 @@
     
     
     
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -159,6 +163,11 @@
                     19 分钟 读完 (大约 2817 个字)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
                 
             </div>
         </div>
@@ -657,7 +666,7 @@ mInputStream = mSerialPort.getInputStream();  //获取串口的输入流
                     
                     <p class="is-size-6 is-flex is-flex-center has-text-grey">
                         <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>BeiJing</span>
+                        <span>北京 朝阳</span>
                     </p>
                     
                 </div>
@@ -1312,6 +1321,13 @@ mInputStream = mSerialPort.getInputStream();  //获取串口的输入流
                 &copy; 2019 Ruilin Jian&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
                 
+                <br>
+            
+              <!-- 不蒜子计数 -->
+			  <span id="busuanzi_container_site_pv" style="display:none"> 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 </span>
+			  <span id="busuanzi_container_site_uv" style="display:none">| 本站总访客数 <span id="busuanzi_value_site_uv"></span> 人 </span>
+			  <!-- 不蒜子计数 -->  
+                
                 </p>
             </div>
             <div class="level-end">
@@ -1442,6 +1458,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     
+    
+
     
 
 
