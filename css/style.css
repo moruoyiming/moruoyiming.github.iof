@@ -125,6 +125,7 @@ img.thumbnail {
   }
 }
 .footer {
+  width: 100%;
   background: #fff;
 }
 .footer .field .button {
