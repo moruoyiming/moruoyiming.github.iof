@@ -2,21 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 蓝牙开发 - 菅瑞霖&#39;Blog</title>
+<title>Android 项目中so文件丢失 - 菅瑞霖&#39;Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="移动开发技术分享博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="菅瑞霖&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/tags/蓝牙开发/index.html">
+    <meta name="description" content="项目运行时提示缺少so文件，需要在App项目中build.gradle增加支持的so 文件类型.在defaultConfig下增加下方代码123ndk &amp;#123;          abiFilters &amp;quot;armeabi&amp;quot;,&amp;apos;x86&amp;apos;, &amp;apos;armeabi-v7a&amp;apos;, &amp;apos;armeabi-v8a&amp;apos;, &amp;apos;arm6">
+<meta name="keywords" content="Android,so文件,ndk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 项目中so文件丢失">
+<meta property="og:url" content="http://yoursite.com/2019/02/26/SO文件缺失/index.html">
 <meta property="og:site_name" content="菅瑞霖&#39;Blog">
-<meta property="og:description" content="移动开发技术分享博客">
+<meta property="og:description" content="项目运行时提示缺少so文件，需要在App项目中build.gradle增加支持的so 文件类型.在defaultConfig下增加下方代码123ndk &amp;#123;          abiFilters &amp;quot;armeabi&amp;quot;,&amp;apos;x86&amp;apos;, &amp;apos;armeabi-v7a&amp;apos;, &amp;apos;armeabi-v8a&amp;apos;, &amp;apos;arm6">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-26T14:25:01.097Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="菅瑞霖&#39;Blog">
-<meta name="twitter:description" content="移动开发技术分享博客">
+<meta name="twitter:title" content="Android 项目中so文件丢失">
+<meta name="twitter:description" content="项目运行时提示缺少so文件，需要在App项目中build.gradle增加支持的so 文件类型.在defaultConfig下增加下方代码123ndk &amp;#123;          abiFilters &amp;quot;armeabi&amp;quot;,&amp;apos;x86&amp;apos;, &amp;apos;armeabi-v7a&amp;apos;, &amp;apos;armeabi-v8a&amp;apos;, &amp;apos;arm6">
 
 
 
@@ -92,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="菅瑞霖&#39;Blog" height="28">
+                <img src="/images/logo.svg" alt="Android 项目中so文件丢失" height="28">
             
             </a>
         </div>
@@ -136,23 +138,12 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">蓝牙开发</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-06-06T09:04:50.992Z">2018-06-06</time>
+                <time class="level-item has-text-grey" datetime="2019-02-26T14:21:38.581Z">2019-02-26</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
@@ -162,42 +153,96 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    16 分钟 读完 (大约 2398 个字)
+                    1 分钟 读完 (大约 135 个字)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/06/06/Android经典蓝牙通讯传输DEMO/">Android 经典蓝牙通讯传输Demo</a>
+                Android 项目中so文件丢失
             
         </h1>
         <div class="content">
-            <h1 id="BlueUtils"><a href="#BlueUtils" class="headerlink" title="BlueUtils"></a>BlueUtils</h1><p>经典蓝牙搜索，连接，数据传输小DEMO</p>
-<p>通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。</p>
-<p><a href="https://www.jianshu.com/p/fc46c154eb77" target="_blank" rel="noopener">https://www.jianshu.com/p/fc46c154eb77</a> (经典蓝牙)  <a href="https://www.jianshu.com/p/3a372af38103" target="_blank" rel="noopener">https://www.jianshu.com/p/3a372af38103</a> (BLE蓝牙)<br></p>
+            <p>项目运行时提示缺少so文件，需要在App项目中build.gradle增加支持的so 文件类型.在defaultConfig下增加下方代码<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ndk &#123;</span><br><span class="line">          abiFilters &quot;armeabi&quot;,&apos;x86&apos;, &apos;armeabi-v7a&apos;, &apos;armeabi-v8a&apos;, &apos;arm64-v8a&apos;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>完整代码</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">defaultConfig &#123;</span><br><span class="line">       applicationId &quot;...&quot;</span><br><span class="line">       minSdkVersion versions.minSdk</span><br><span class="line">       targetSdkVersion versions.targetSdk</span><br><span class="line">       versionCode versions.appVerCode</span><br><span class="line">       versionName versions.appVerName</span><br><span class="line">       multiDexEnabled true </span><br><span class="line"></span><br><span class="line">       ndk &#123;</span><br><span class="line">           abiFilters &quot;armeabi&quot;,&apos;x86&apos;, &apos;armeabi-v7a&apos;, &apos;armeabi-v8a&apos;, &apos;arm64-v8a&apos;</span><br><span class="line">       &#125;</span><br><span class="line">       javaCompileOptions &#123;</span><br><span class="line">           annotationProcessorOptions &#123;</span><br><span class="line">               arguments = [AROUTER_MODULE_NAME: project.getName()]</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>从新编译应用，并在build/outputs/apk下查看编译成功的apk 文件中的libs 已经将so文件成功编译进去。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/06/06/Android经典蓝牙通讯传输DEMO/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Android/">Android</a>, <a class="has-link-grey -link" href="/tags/ndk/">ndk</a>, <a class="has-link-grey -link" href="/tags/so文件/">so文件</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay-reward-image.jpeg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat-reward-image.jpeg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/">
+                <span class="level-item">快速手动搭建SS服务器简明详细教程</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -1016,7 +1061,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="菅瑞霖&#39;Blog" height="28">
+                    <img src="/images/logo.svg" alt="Android 项目中so文件丢失" height="28">
                 
                 </a>
                 <p class="is-size-7">
