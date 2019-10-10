@@ -2,21 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: ADB - Brigitte Jian&#39;Blog</title>
+<title>热修复技术原理总结 - Brigitte Jian&#39;Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="移动开发技术分享博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Brigitte Jian&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/tags/ADB/index.html">
+    <meta name="description" content="#1.什么是热修复 传统更新流程：版本上线-&amp;gt;用户安装-&amp;gt;发现bug-&amp;gt;紧急修复-&amp;gt;重新发版-&amp;gt;用户安装 弊端  :重新发版本代价高  :用户下载安装成本高  :bug修复不及时，体验差 解决方案  Hybrid方案:业务逻辑以H5方式加载  插件化方案:Atlas或者DroidPlugin方案  热修复方案:采用热修复技术，将更新补丁上传到云端，APP从云端下拉补丁">
+<meta name="keywords" content="Android,ADB,热修复,hook,底层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="热修复技术原理总结">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/热修复技术原理总结/index.html">
 <meta property="og:site_name" content="Brigitte Jian&#39;Blog">
-<meta property="og:description" content="移动开发技术分享博客">
+<meta property="og:description" content="#1.什么是热修复 传统更新流程：版本上线-&amp;gt;用户安装-&amp;gt;发现bug-&amp;gt;紧急修复-&amp;gt;重新发版-&amp;gt;用户安装 弊端  :重新发版本代价高  :用户下载安装成本高  :bug修复不及时，体验差 解决方案  Hybrid方案:业务逻辑以H5方式加载  插件化方案:Atlas或者DroidPlugin方案  热修复方案:采用热修复技术，将更新补丁上传到云端，APP从云端下拉补丁">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-10T11:23:02.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Brigitte Jian&#39;Blog">
-<meta name="twitter:description" content="移动开发技术分享博客">
+<meta name="twitter:title" content="热修复技术原理总结">
+<meta name="twitter:description" content="#1.什么是热修复 传统更新流程：版本上线-&amp;gt;用户安装-&amp;gt;发现bug-&amp;gt;紧急修复-&amp;gt;重新发版-&amp;gt;用户安装 弊端  :重新发版本代价高  :用户下载安装成本高  :bug修复不及时，体验差 解决方案  Hybrid方案:业务逻辑以H5方式加载  插件化方案:Atlas或者DroidPlugin方案  热修复方案:采用热修复技术，将更新补丁上传到云端，APP从云端下拉补丁">
 
 
 
@@ -92,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Brigitte Jian&#39;Blog" height="28">
+                <img src="/images/logo.svg" alt="热修复技术原理总结" height="28">
             
             </a>
         </div>
@@ -136,22 +138,11 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">ADB</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/10/10/热修复技术原理总结/" class="image is-7by1">
+        <span class="image is-7by1">
             <img class="thumbnail" src="/gallery/thumbnails/plant.jpg" alt="热修复技术原理总结">
-        </a>
+        </span>
     </div>
     
     <div class="card-content article ">
@@ -172,93 +163,184 @@
                 </span>
                 
                 
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/10/10/热修复技术原理总结/">热修复技术原理总结</a>
+                热修复技术原理总结
             
         </h1>
         <div class="content">
             <p>#1.什么是热修复</p>
 <p>传统更新流程：版本上线-&gt;用户安装-&gt;发现bug-&gt;紧急修复-&gt;重新发版-&gt;用户安装</p>
 <p>弊端<br>  :重新发版本代价高<br>  :用户下载安装成本高<br>  :bug修复不及时，体验差</p>
-<p>解决方案<br>  Hybrid方案:业务逻辑以H5方式加载<br>  插件化方案:Atlas或者DroidPlugin方案<br>  热修复方案:采用热修复技术，将更新补丁上传到云端，APP从云端下拉补丁直接应用生效<br>  热修复更新流程:版本上线-&gt;用户安装-&gt;发现bug-&gt;紧急修复-&gt;打出补丁,推送给用户-&gt;自动拉取补丁修复<br>  优势<br>   1.无需重新发版，实时高效热修复<br>   2.用户无感知修复，无需下载新应用,代价小<br>   3.修复成功率高，把损失降到最低<br></p>
+<p>解决方案<br>  Hybrid方案:业务逻辑以H5方式加载<br>  插件化方案:Atlas或者DroidPlugin方案<br>  热修复方案:采用热修复技术，将更新补丁上传到云端，APP从云端下拉补丁直接应用生效<br>  热修复更新流程:版本上线-&gt;用户安装-&gt;发现bug-&gt;紧急修复-&gt;打出补丁,推送给用户-&gt;自动拉取补丁修复<br>  优势<br>   1.无需重新发版，实时高效热修复<br>   2.用户无感知修复，无需下载新应用,代价小<br>   3.修复成功率高，把损失降到最低<br><a id="more"></a></p>
+<p>##2.热修复框架<br>  腾讯QQ控件的超技补丁技术，微信的Tinker，饿了么的Amigo，美团的Robust<br>  非侵入式Android热修复方案Sophix<br>Sophix不支持四大组件的修复,如果要修复四大组件，必须在AndroidManifest里预先插入代理组件，并且声明所有权限。对app运行流程的侵入性太强。未作处理。</p>
+<p>##3.Android热修复的三大领域:代码修复,资源修复,So修复。</p>
+<p>###3.1代码修复</p>
+<p>###代码修复方案:一种是阿里系的底层替换方案，一种是腾讯系的类加载方案<br>优劣:<br>    底层替换方案限制多，但时效性好，加载快，立即见效。<br>类加载方案时效性差，需要重新冷启动才能见效，但修复范围广，限制少。</p>
+<p>###底层替换方案<br>   底层替换方案是在已经加载了的类中直接替换掉原有方法，是在原来类的基础上进行修改。因而无法实现对原有类进行方法和字段的增减，因为这样将破坏原有类结构。一旦补丁类中出现了方法的增加或减少，就会导致这个类以及整个Dex的方法数的变化。方法数的变化伴随着方法索引的变化，这样在访问方法时就无法正常的索引到正确的方法了。如果字段发生了增加和减少，和方法变化的情况一样，所有字段的索引都会发生变化。更严重的问题是，如果在程序运行中间某各类突然增加了一个字段，那么对于原先已经产生的这个类的实例，他们还是原来的结构，这是无法改变的。而新方法使用到这些老的实例对象时，访问新增字段就会产生不可预期的结果。<br>传统的底层替换方式，不论是Dexposed、Andfix或者其他安全界的Hook方案，都是直接依赖修改虚拟机方法实体的具体字段，例如，改Dalvik方法的jni函数指针、修改类或者方法的访问权限。Android开源，各大厂商对代码进行改造，Andfix里的ArtMethod的结构是根据Android源码中的结构写死的。如果ArtMethod做修改，这种替换机制就会出问题。<br>   Sophix是一种无视底层具体结构的替换方式，解决了兼容性问题。忽略了底层ArtMethod结构的差异，对于Android版本不需要区分，代码量大大减少。只要ArtMethod数组是以线性结构排列，就不会出现问题。</p>
+<p>###类加载方案<br>类加载方案的原理是在app重新启动后让Classloader去加载新的类。因为app运行时，所有需要发生变更的类已经被加载过了，在Android上是无法对一个类进行卸载。如果不重新启动，原来的类还在虚拟机上，就无法加载新类。只有重新启动，在业务逻辑执行前，抢先加载补丁中的新类，当访问这个类时就会Resolve为新类，达到热修复目的。</p>
+<p>###底层替换原理<br>  Andfix即时生效，其原理是，在已经加载的类中直接在native层替换掉原有方法，实在原有类基础上进行修改。<br>其核心在于replaceMethod函数，这是一个native方法。</p>
+<p>其参数是在Java层通过反射机制得到的Method对象所对应的jobject。src对应的事需要被替换的原有方法。dest对应的就是新方法，新方法存在于补丁包中的新类中，也就是补丁方法。</p>
+<p>Android的java运行环境，在4.4以下用的事dalvik虚拟机，而在4.4以上用的是art虚拟机。</p>
+<p>我们以art为例，对于不同Android版本的art，底层Java对象的数据结构是不同的，因而会进一步区分不同的替换函数，这里我们以Android6.0为例，对应的就是replace_6_0.</p>
+<p>每一个Java方法在art中都对应着一个ArtMethod，ArtMethod记录了这个Java方法的所有信息，包括所属类、访问权限、代码执行地址等。<br>    通过env-&gt;FromReflectedMethod，可以由Method对象得到这个方法对应的ArtMethod的真正起始地址。然后可以把它强转成ArtMethod指针，从而对其所有成员进行修改。这样全部替换完之后就完成了热修复逻辑，以后调用这个方法时就会直接走到新方法的实现中了。<br>     为什么这样替换完就可以实现热修复了呢？需要从虚拟机调用方法的原理说起。<br>    在Art虚拟机中ArtMethod结构中，包含两个重8_point_from_quick_compiled_code_了，他们是方法的执行入口。Java代码在Android中会被编译成DexCode。你也不<br>    Art中可以采用解析模式或者AOT机器码模式执行。<br>    解析模式，就是去除Dex Code，逐条解析执行，如果方法的调用者以解析模式运行，在调用方法时，就会取得这个方法的entry_point_from_interpreter_,然后他交转过去执行。<br>AOT的方式，就会先预编译好Dex Code 对应的机器码，然后执行期直接执行机器码，不需要一条条解析执行Dex Code。如果方法的调用者是以AOT机器码方式执行的，在调用这个方法是，就是跳转到entry_point_from_quick_compiled_code执行。<br>因此，当把一个旧方法的所有成员字段都换成新方法后，执行时所有数据就可以保持和新方法的一至。这样在所有执行到旧方法的地方，回取得新方法的执行入口、所属class、方法索引号及所属dex信息，然后想调用旧方法一样的执行到新方法的逻辑。</p>
+<p>Native替换方案，比如Andfix和其他安全界的Hook方案，都是写死ArtMethod结构体，这样会带来兼容性问题。Native层替换思路，其实就是替换ArtMethod的所有成员</p>
+<p>Sophix采取的是将ArtMethod的作为整体进行替换。</p>
+<p>访问权限的问题<br> 方法调用时的权限检查、同包名下的权限问题、反射调用非静态方法问题。</p>
+<p>即时生效在什么情况下不适用？</p>
+<ol>
+<li>引起原有类中发生结构变化的修改</li>
+<li>修复了的非静态方法会被反射调用</li>
+</ol>
+<p>内部类编译<br>    内部类会在编译器会被编译为跟外部类一样的顶级类。</p>
+<p>冷启动类加载原理<br>当类结构发生变化时，如新增减少类的method/field再热部署模式下会受到限制，但是冷部署能够达到修复目的。</p>
+<p>##冷启动实现方案</p>
+<p>##插桩实现的前因后果<br>    如果仅仅把补丁类打入补丁包中而不做任何处理的话， 在运行时类加载的时候会异常退出。加载一个dex文件到本地内存时，如果不存在odex文件，首先会执行dexopt，dexopt 的入口在davilk/opt/OptMain.cpp的main方法，最后调用到verifyAndOptimizeClass执行真正的verify/optimize操作。<br>    Apk第一次安装的时候，会对原dex执行dexopt,此时假如apk只存在一个dex，所以dvmVerifyClass(clazz)结果为true,所以apk中所有的类都会被打上CLASS_ISPREVERIFIED标识，接下来执行dvmOptimizeClass，类接着被打上CLASS_ISOPTIMIZED标识。<br>    现在加入A类是补丁类，所以补丁A类在单独的dex中，类B中的某个方法引用到补丁类A，所以执行到该方法会尝试解析类A。</p>
+<p>类B由于被打上了CLASS_ISPREVERIFIED标志，接下来referrer是类B，resClassCheck是补丁类A，他们属于不同的dex。所以会提示dvmThrowlllegalAccessError。<br>为了解决这个问题，一个单独无关帮助类放到一个单独的dex中，原dex中所有类的构造函数都引用这个类，一般的实现方法都是侵入dex打包流程，利用.class字节码修改技术，在所有.class文件的构造函数中引用这个帮助类，插桩由此而来。<br>Art下冷启动实现<br>    Dalvik下和Art下对DexFile.loadDex尝试把一个dex文件解析加载到native内存发生了什么？实际都是调用了DexFile.openDexFileNative这个native方法。<br>Dalvik尝试加载一个压缩文件的时候只会去把classes.dex加载到内存中，如果此时内存文件中有多个dex，那么除了classes.dex之外的其他dex被直接忽略掉<br>Art虚拟机方法调用链DexFile-&gt;openDexFileNative-&gt;OpenDexFilesFromat-&gt;LoadDexFiles<br>Art下默认支持加载压缩文件中包含多个dex，首先肯定优先加载primary dex其实就是classes.dex，后续会加载其他的dex。所以补丁类只需要放到classes.dex即可，后续出现在其他dex中的“补丁类“是不会被重复加载的。</p>
+<p>Art最终冷启动解决方案</p>
+<pre><code>把补丁dex命名为classes.dex。原apk中的dex一次命名为classes(2,3,4…).dex就好了，然后一起打包为一个压缩文件。然后DexFile.LoadDex得到DexFile对象，最后把该DexFile对象整个替换旧的dexElements数据就可以了。
+</code></pre><p>Sophix 和 tinker 方案</p>
+<ol>
+<li>补丁dex必须命名为classes.dex</li>
+<li>loadDex得到的DexFile完整替换掉dexElements数组而不是插入</li>
+</ol>
+<p>DexFile.loadDex尝试把一个dex文件解析并加载到native内存，在加载到native内存之前，如果dex不存在对应的odex，那么Dalvik下回执行dexopt，Art下回执行dexoat，最后得到的都是一个优化后的odex，实际上最后虚拟机执行的事这个odex而不是dex。<br>dex足够大那么dexopt/dexoat实际上是很好似的，Dalvik下实际影响比较下，因为loadDex仅仅是补丁包，Art下影响非常大，因为loadDex是补丁dex和apk中原dex合并成一个完整补丁压缩包，所以dexoat非常耗时。如果优化后的odex文件没生成或者没生成一个完整的odex文件，那么loadDex便不能在应用启动的时候进行的，因为会阻塞loadDex线程，一般是主线程。所以解决这个问题，Sophix把loadDex当做一个事务来看，如果中途被打断，那么就删除odex文件，重启的时候如果发现存在odex文件，loadDex完之后，反射注入/替换dexElements数组，实现patch。如果不存在odex文件，那么重启另一子进程loadDex<br>，重启之后在生效。</p>
+<p>具体实施方案对Dalvik和Art下</p>
+<ol>
+<li>Dalvik下采用自行研发的全量Dex方案</li>
+<li>Art下本质上虚拟机已经支持多dex的加载，我们只需把补丁dex作为主dex(classes.dex)加载而已</li>
+</ol>
+<p>冷启动方案限制？<br>当新增一个publlic/protected/default方法，会出现方法调用错乱。</p>
+<p>Google的dexmerge方案<br>    把补丁dex和原dex合并一个完整的dex。</p>
+<p>Dalvik下完整DEX方案的新探索<br>    冷启动类加载修复<br>    对于Android下的冷启动类加载修复，最早的实现方案是QQ空间提出的dex插入方案。主要思想是，把插入新dex插入到ClassLoader索引路径的最前面，这样在load一个class时，优先找到补丁中的。这类插入dex 的方案，会遇到一个主要的问题，就是如何解决Dalvik虚拟机下类的pre-verify问题。<br>    如果一个类 中直接引用到的所有非系统类都和该类在同一个dex里的话，那么这个类就会被打上CLASS_ISPREVERIFIED,具体判定代码可见虚拟机中的verifyAndOptimizeClass函数。<br>    腾讯的三大热修复方案是如何解决这个问题的：<br>    QQ控件的处理方式，是在每个类中插入一个来自其他dex的hack.class,由此让所有类里面都无法满足pre-verified条件。<br>    Tinker的方式，是合成全量的dex文件，这样所有class的都在全量dex中解决，从而消除class重复而带来的冲突。<br>    Qfix的方式，是取得虚拟机中的某些底层函数，提前resolve所有补丁类，以此绕过Pre-verify检查。<br>Sophix的方式，补丁中已包含变动的类，主要在原先基线包中dex里边，去掉补丁中已有的class。这样，补丁+去除了补丁类的基线包=app中所有类。<br>参考Android原生multi-dex的实现，是把一个apk所用到的所有类拆分到classes.dex、classes2.dex、classes.dex…之中，而每个dex都只包含了部分的类的定义，但单个dex也是可以加载的，因为只要把所有dex都load进去，本dex中不存在的类就可以在运行期间在其他dex中找到。</p>
+<p>#资源热修复技术</p>
+<p>##3.2资源修复<br>InstantRun资源热修复原理：</p>
+<ol>
+<li>构造一个新的AssetManager，并通过反射调用addAssetPath，把这个完整的新资源包加入到AssetManger中，这样就得到一个含有所有新资源的AssetManager。</li>
+<li>找到所有之前引用到愿你有Assetmanager的地方，通过反射，把引用处替换成新的AssetManager。<br>Sophix 资源热修复原理:<br>构造一个package id 为0x66的资源包，其中包含改变了的资源项，然后直接在原有的AssetManager中addAssetPath这个包就可以了。由于补丁包的package id 为0x66,不与目前已经加载的0x7f冲突，因此直接加入到已有的AssetMananger中就可以直接使用。替换方式更加优雅，直接在原有的AssetManageer对象上进行析构和重构，原先AssetManager对象的引用没有发生改变，不用像InstantRun进行繁琐修改。</li>
+</ol>
+<p>###资源替换方案优势</p>
+<ol>
+<li>不修改AssetManager的引用处，替换更快更安全。</li>
+<li>不必下发完整包，补丁包中只包含有变动的资源</li>
+<li>不要在运行时合成完整包。不占用运行时计算和内存资源。</li>
+</ol>
+<p>一个Android进程只包含一个ResTable,ResTable的成员变量mPackageGroups就是所有解析过的资源包的集合。任何 一个资源包中都含有resources.arsc,他记录了所有资源的id分配情况以及资源中的所有字符串。这些信息是以二进制方式存储的。底层的AssetManager做的事就是解析这个文件，然后把相关信息存储到mPackageGroups里面。<br>    资源信息主要是指每隔资源的名称以及他对应的编号。每隔资源，都有唯一编号。<br>     编号是一个32位数字，用十六进制来标识就是0xPPTTEEEE。PP为package id，TT为type id，EEEE为entry id。</p>
+<p>运行时资源的解析<br>    默认由Android SDK编出来的apk，是由aapt工具进行打包的，其资源包的package id 是 0x7f。系统的资源包，也就是framework-res.jar，package id 为0x01。在走到app 的第一行代码之前，系统就已经帮我们构造好一个已经添加了安装包资源的AssetManager了。</p>
+<p>因此，这个AssetManager里就已经包含了系统资源包以及app的安装包，就是package id 为0x01的framework-res.jar中的资源和package id为0x7f的app安装包资源。<br>    如果此时直接在addAssetPath其实补丁包里的资源是不生效的。因为在getResTable已经执行很多次了。不会发生真正的解析。</p>
+<p>###Sophix资源解决方案<br>    构造一个package id 为0x66的资源包，包含了改变的资源项，然后直接在原有AssetManager中addAssetPath这个包。不与已经加载的0x7f冲突。<br>    而资源的改变包含增加、减少、修改这三种情况，分别是如何处理的呢？</p>
+<ol>
+<li>对于新增资源，直接加入补丁包，然后新代码里直接引用就可以了</li>
+<li>对于减少资源，我们只要不使用他就行了，因此不用考虑这种情况，他也不影响补丁包</li>
+<li>对于修改资源，比如替换了一张图片之类的情况。我们把它视为新增资源，在打补丁的时候，代码在引用处也会做响应修改，也就是直接把原来使用就资源id的地方变成新id。<br>#3.3 So库修复<br>So库修复本质上是对native方法的修复和替换。<br>Sophix采用的是类似类修复反射注入方式。把补丁so库的路径插入到nativeLibraryDirectories数组的最前面，达到加载so库时时补丁so库，而不是原来so库的目录，从而达到修复的目的。采用这种方案，完全由Sophix在启动期间反射注入patch中的so库。其他方案是手动替换系统的System.load来实现替换目的。<br>Java Api提供一下两个接口加载一个so库</li>
+<li>System.loadLibrary(String libName);传进去的参数 so库名称，表示的so库文件，位于apk压缩文件中的libs目录，最后复制到apk安装目录下。</li>
+<li>System.load(String pathName)传进去的参数 so库在磁盘中的完整路径。加载一个自定义外部so库文件。<br>两种方式加载一个so库，实际上最后都调用nativeLoad这个native方法去加载so库，这个方法的参数fileName so库在磁盘中的完整路径名。</li>
+</ol>
+<p>JNI编程中，动态注册的natvie方法必须实现JNI_ONLoad方法，同时实现一个JNINativeMethod[]数组 ，静态注册的native方法必须是Java+类完整路径+方法名的格式。</p>
+<p>##3.1. SO库冷部署重启生效实现方案<br>    SO库修复方案</p>
+<ol>
+<li>接口调用替换方案，需要强制侵入用户接口调用</li>
+<li>反射注入方案，重启生效</li>
+</ol>
+<p>总结：</p>
+<ol>
+<li>动态注册的native方法映射通过加载so库过程中调用JNI_OnLoad方法调用完成</li>
+<li>静态注册的native方法映射是在该native方法第一次执行的时候才完成映射，当然前提是该so库已经load过。</li>
+</ol>
+<p>##3.2 SO库热部署实时生效分析</p>
+<p>###3.2.1动态注册native方法实时生效<br>动态注册的native方法调用一次JNI_OnLoad方法都会重新完成一次映射，所以我们是否只要先加载原来的so库，然后在加载补丁so库，就完成Java层native方法到native层patch后的新方法映射，这样就完成动态注册native方法的patch实时修复。</p>
+<p>实测发现art下这样是可以实时生效，但Dalvik下做不到试试生效。原因Dalvik第二次load补丁so库，执行的仍然是原来的so库的JNI_OnLoad方法，而不是补丁so库的JNI_OnLoad方法。Dalvik虚拟机下dlopen方法实现，底层方法会校验so库是否已经加载过，方法的判断依据是判断name<br>,如果加载过直接返回该so库的句柄。如果so库从未加载过，则load_library执行加载。<br>所以Dalvik下面加载修复后的补丁so拿到的还是原so库文件的句柄，所以执行的仍然是原so库的JNI_OnLoad方法，Art下不存在问题，因Art下该方法以name作为key去查找不是bname,所以art下重新load一遍补丁so库，拿到的是补丁so库的句柄，然后执行补丁so库的JNI_OnLoad。解决Dalvik下该问题，可对补丁so库进行改名。 </p>
+<p>###3.2.2静态注册native方法实时生效<br>静态注册native方法的映射实在native方法第一次执行的时候完成映射，如果native方法在加载补丁so库之前已经执行过，是否这个静态注册native方法一定得不到修复？<br>幸运的是，系统JNI API提供了解注册的接口 UnregisterNatives（JNIEnv* env,jclass jclazz）函数回吧jclazz所在类的所有native方法都重新指向为dvmResolveNativeMethod，所以调用unregisterNatives之后不管是静态注册还是动态注册的native方法之前是否执行过在加载补丁so 的时候都会重新去做映射。所以我们只需要以下调用。</p>
+<p>##3.3 SO库冷部署重启生效实现方案</p>
+<p> ###3.3.1.接口调用替换方案<br>Sdk提供接口替换System默认加载so库接口</p>
+<p>SOPatchManager。loadLibrary接口加载so库的时候有限尝试去加载sdk指定目录下的补丁so，加载策略如下：</p>
+<ol>
+<li>如果存在则加载补丁so库而不会去加载安装apk安装目录下的so库。</li>
+<li>如果不存在补丁so，那么调用System.loadLibrary去加载安装apk目录下的so库。</li>
+</ol>
+<p>方案优缺点：<br>优点：不需要对不同sdk版本进行兼容，因为所有的SDK版本都有System.loadLibrary这个接口。<br>缺点：调用方需要替换掉System默认加载so库接口为sdk提供的接口，如果是已经编译混淆好的三方库的so库需要patch，那么是很难做到接口的替换。</p>
+<p>###3.3.2反射注入方案<br>System.loadLibrary(“native-lib”)，加载so库的原理，其实native-lib这个 so库最终传给native方法执行的参数是so库在磁盘中的完整路径，比如/data/app-lib/com.taobao.jni-2/libnative-lib.so,so库会在DexPathList.nativeLibraryDirectories/nativeLibraryPathElements变量所表示的目录下去遍历搜索。</p>
+<p>可以发现会遍历nativeLibraryDirectories数组，如果找到了IoUtils.canOpenReadOnly(path)返回true，那么就直接返回该path，IoUtils。canOpenReadOnly(path)返回true的前提肯定是需要path标识的so文件存在的。我们可以采取类似类修复反射注入方式，只要把我们的补丁so库的路径插入到nativeLibraryDirectories数组的最前面就能够达到加载so库的时候是补丁so库而不是原来so库的目录，从而达到修复的目的。</p>
+<p>Sdk23以上findLibrary 实现已经发生变化，只需把补丁so库的完整路径违参数构建一个Element对象，然后再插入nativeLibraryPathElements数组的最前面就好了。</p>
+<p>优点：可以修复三方库的so库。同事接入方不需要想方案1一样强制侵入用户接口调用。<br>缺点：需要不断的对sdk进行适配，如上sdk23为分界线，findLibrary接口实现已发生变化。<br>不管是补丁包还是apk中一个so库存在多种cpu架构的so文件，比如armeabi，arm64-v8a,x86等。加载可定是加载其中一个so库文件的，如何选择机型对应的so库文件将是重点所在。</p>
+<p>虚拟机究竟如何选择哪个abis目录作为参数构建PathClassLoader对象，原理如图</p>
+<p>实际上补丁so也存在类似的问题，我们的补丁so库文件放到补丁包的libs目录下，libs目录和.dex文件res资源文件一起打包成一个压缩文件作为最后的补丁包，libs目录可能也包含多种abis目录。所以我们需要选择手机最合适的primaryCpuAbi，然后从libs目录下选择这个primaryCpuAbi子目录插入到nativeLibraryDirectories/nativeLibraryPathElements数组。所以怎么选择primaryCpuAbi是关键，具体实现如图：</p>
+<p>1.sdk&gt;=21时，直接反射拿到ApplicationInfo对象的primaryCpuAbi即可<br>2.sdk&lt;21时，有雨此时不支持64位，所以直接吧Build.CPU_ABI,Build.CPU_ABI2作为primaryCpuAbi即可。</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/10/热修复技术原理总结/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ADB/">ADB</a>, <a class="has-link-grey -link" href="/tags/Android/">Android</a>, <a class="has-link-grey -link" href="/tags/hook/">hook</a>, <a class="has-link-grey -link" href="/tags/底层/">底层</a>, <a class="has-link-grey -link" href="/tags/热修复/">热修复</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-12-18T20:17:54.000Z">2018-12-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 小时 读完 (大约 13890 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
             
-                <a class="has-link-black-ter" href="/2018/12/19/README/">ADB命令大全(转)</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id><a href="#" class="headerlink" title></a><img src="./assets/title.png" alt="Awesome Adb"></h1><p>ADB，即 <a href="https://developer.android.com/studio/command-line/adb.html" target="_blank" rel="noopener">Android Debug Bridge</a>，它是 Android 开发/测试人员不可替代的强大工具，也是 Android 设备玩家的好玩具。</p>
-<p>持续更新中，欢迎提 PR 和 Issue 补充指正，觉得有用的可以将 <a href="https://github.com/mzlogin/awesome-adb" target="_blank" rel="noopener">此 GitHub 仓库</a> Star 收藏备用。</p>
-<p><strong>注：</strong> 有部分命令的支持情况可能与 Android 系统版本及定制 ROM 的实现有关。<br></p>
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay-reward-image.jpeg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat-reward-image.jpeg" alt="微信"></div>
+</a>
+
+                
         </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/12/19/README/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 
 
-
-
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/26/SO文件缺失/">
+                <span class="level-item">Android 项目中so文件丢失</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -1141,7 +1223,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Brigitte Jian&#39;Blog" height="28">
+                    <img src="/images/logo.svg" alt="热修复技术原理总结" height="28">
                 
                 </a>
                 <p class="is-size-7">
