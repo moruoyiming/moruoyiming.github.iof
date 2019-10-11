@@ -2,40 +2,29 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>快速手动搭建SS服务器简明详细教程 - Brigitte Jian&#39;Blog</title>
+<title>Android 经典蓝牙通讯传输Demo - Brigitte Jian&#39;Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="优惠购买搬瓦工搬瓦工VPS相对其它的云服务产商来说，性价比高，使用起来速度快。通过优惠码购买还能再降低最多 %6 的一些费用。在这基础上使用优惠码可以少一些费用，根据你对配置的需要进行选择服务器，以下是可以获取优惠码的链接：">
-<meta name="keywords" content="ss,翻墙,搬瓦工">
+    <meta name="description" content="BlueUtils经典蓝牙搜索，连接，数据传输小DEMO 通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。 https://www.jianshu.com/p/f">
+<meta name="keywords" content="Android,蓝牙开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速手动搭建SS服务器简明详细教程">
-<meta property="og:url" content="http://yoursite.com/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/index.html">
+<meta property="og:title" content="Android 经典蓝牙通讯传输Demo">
+<meta property="og:url" content="http://yoursite.com/2019/10/11/Android经典蓝牙通讯传输DEMO/index.html">
 <meta property="og:site_name" content="Brigitte Jian&#39;Blog">
-<meta property="og:description" content="优惠购买搬瓦工搬瓦工VPS相对其它的云服务产商来说，性价比高，使用起来速度快。通过优惠码购买还能再降低最多 %6 的一些费用。在这基础上使用优惠码可以少一些费用，根据你对配置的需要进行选择服务器，以下是可以获取优惠码的链接：">
+<meta property="og:description" content="BlueUtils经典蓝牙搜索，连接，数据传输小DEMO 通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。 https://www.jianshu.com/p/f">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-7b3fd4bb48840e08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-6ab7663af15e9c96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-5b8af8f351a05560.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-c638f99160546260.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-51d8fc99eddce3c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-7c1dd9887de06834.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-0cc56bcad0a0c53d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-d5568b41bb8c483d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-51bbc1cf4a4de921.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-c4114dd85a412a55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-b23683074df63634.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-d705fa439fa029d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-3390aeef1c6cb606.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-e2b26f12a49d280c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-6eeebb68cafde6d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1975227-464f2992c6db74a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-02-21T07:58:29.161Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-37-407_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-50-702_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-07-909_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-16-064_com.calypso.bu.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-31-043_com.calypso.bu.png">
+<meta property="og:updated_time" content="2019-10-11T01:27:28.245Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快速手动搭建SS服务器简明详细教程">
-<meta name="twitter:description" content="优惠购买搬瓦工搬瓦工VPS相对其它的云服务产商来说，性价比高，使用起来速度快。通过优惠码购买还能再降低最多 %6 的一些费用。在这基础上使用优惠码可以少一些费用，根据你对配置的需要进行选择服务器，以下是可以获取优惠码的链接：">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1975227-7b3fd4bb48840e08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="Android 经典蓝牙通讯传输Demo">
+<meta name="twitter:description" content="BlueUtils经典蓝牙搜索，连接，数据传输小DEMO 通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。 https://www.jianshu.com/p/f">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-37-407_com.calypso.bu.png">
 
 
 
@@ -111,7 +100,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="快速手动搭建SS服务器简明详细教程" height="28">
+                <img src="/images/logo.svg" alt="Android 经典蓝牙通讯传输Demo" height="28">
             
             </a>
         </div>
@@ -158,7 +147,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="快速手动搭建SS服务器简明详细教程">
+            <img class="thumbnail" src="/gallery/thumbnails/sculpture.jpg" alt="Android 经典蓝牙通讯传输Demo">
         </span>
     </div>
     
@@ -166,17 +155,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-21T06:59:50.224Z">2019-02-21</time>
+                <time class="level-item has-text-grey" datetime="2019-10-11T01:27:28.245Z">2019-10-11</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 读完 (大约 2211 个字)
+                    16 分钟 读完 (大约 2398 个字)
                 </span>
                 
                 
@@ -190,71 +179,254 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                快速手动搭建SS服务器简明详细教程
+                Android 经典蓝牙通讯传输Demo
             
         </h1>
         <div class="content">
-            <h1 id="优惠购买搬瓦工"><a href="#优惠购买搬瓦工" class="headerlink" title="优惠购买搬瓦工"></a>优惠购买搬瓦工</h1><p>搬瓦工VPS相对其它的云服务产商来说，性价比高，使用起来速度快。通过优惠码购买还能再降低最多 %6 的一些费用。在这基础上使用优惠码可以少一些费用，根据你对配置的需要进行选择服务器，以下是可以获取优惠码的链接：<br>  <a id="more"></a><br>| 搬瓦工配置 | 搬瓦工费用 | 优惠链接 |<br>| — | — | — |<br>| <em>20G KVM – PROMO</em><br>SSD硬盘: 20 GB RAID-10<br>RAM内存: 1024 MB<br>CPU处理器: 2x Intel Xeon<br>Transfer流量: 1 TB/mo<br>连接速度: 1 Gigabit<br>Multiple locations | $25.99/半年 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=44" target="_blank" rel="noopener">点击进入</a> |<br>| <em>SPECIAL 40G KVM PROMO V3 - LOS ANGELES - CN2 </em><br>SSD硬盘: 40 GB RAID-10<br>RAM内存: 2048 MB<br>CPU处理器: 1x Intel Xeon<br>Transfer流量: 2000 GB/月<br>连接速度: 1 Gigabit<br>洛杉矶机房，CN2路线，使用中国的直线路线，速度加快 | $27.99/季 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=58" target="_blank" rel="noopener">点击进入</a> |<br>| <em>SPECIAL 20G KVM PROMO V3 - LOS ANGELES - CN2 </em><br>SSD硬盘: 20 GB RAID-10<br>RAM内存: 1024 MB<br>CPU处理器: 1x Intel Xeon<br>Transfer流量: 1000 GB/月<br>连接速度: 1 Gigabit<br>洛杉矶机房，CN2路线，使用中国的直线路线，速度加快 | $29.99 /半年 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=57" target="_blank" rel="noopener">点击进入</a> |<br>| <em>80G KVM – PROMO</em><br>SSD硬盘: 80 GB RAID-10<br>RAM内存: 4 GB<br>CPU处理器: 4x Intel Xeon<br>Transfer流量: 3 TB/mo<br>连接速度: 1 Gigabit<br>Multiple locations | $19.99/月 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=46" target="_blank" rel="noopener">点击进入</a> |<br>| <em>20G KVM – PROMO</em><br>SSD硬盘: 20 GB RAID-10<br>RAM内存: 1024 MB<br>CPU处理器: 2x Intel Xeon<br>Transfer流量: 1 TB/mo<br>连接速度: 1 Gigabit<br>Multiple locations | $49.99/年 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=44" target="_blank" rel="noopener">点击进入</a> |<br>| <em>40G KVM – PROMO</em><br>SSD硬盘: 40 GB RAID-10<br>RAM内存: 2 GB<br>CPU处理器: 3x Intel Xeon<br>Transfer流量: 2 TB/mo<br>连接速度: 1 Gigabit<br>Multiple locations | $99.99/年 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=45" target="_blank" rel="noopener">点击进入</a> |<br>| <em>160G KVM – PROMO</em><br>SSD硬盘: 160 GB RAID-10<br>RAM内存: 8 GB<br>CPU处理器: 5x Intel Xeon<br>Transfer流量: 4 TB/mo<br>连接速度: 1 Gigabit<br>Multiple locations | $39.99/月 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=47" target="_blank" rel="noopener">点击进入</a> |<br>| <em>3200G KVM – PROMO</em><br>SSD硬盘: 320 GB RAID-10<br>RAM内存: 16 GB<br>CPU处理器: 6x Intel Xeon<br>Transfer流量: 5 TB/mo<br>连接速度: 1 Gigabit<br>Multiple locations | $79.99/月 | <a href="https://www.bwh8.net/aff.php?aff=32874&amp;pid=48" target="_blank" rel="noopener">点击进入</a> |</p>
-<p>进入之后就可以获取优惠码了，选择完之后<strong>不要急着点击 「Add to Cart」</strong>。</p>
-<p>这时候就可以获取隐藏的优惠码了，我们对着这个网页：<code>鼠标右击--&gt;查看网页源代码</code>。</p>
-<p>接着 <code>Ctrl + F</code> 搜索 <code>code</code> ，这时候你就会看到 <code>Try this promo code: xxxx</code>，这里的<code>xxxx</code>就是优惠吗，把它复制下来。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-7b3fd4bb48840e08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="banwagong04.png"></p>
-<p>页面的 Location 就是选择服务器的地址，到时访问谷歌的时候会显示你当前访问的地址。好了，我们点击「Add to Cart」。</p>
-<p>接下来，进入结算页面，我们刚才复制的优惠码就派上用场了，将你刚刚复制的优惠码复制进去然后点击 「Validate Code」，看！是不是优惠了！一般人不知道这种操作:</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-6ab7663af15e9c96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vpn5.png"></p>
-<p>接着点击「CheckOut」完成付款即可。付款的时候选择 Alipay 就可以使用支付宝付款。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-5b8af8f351a05560.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vpn8.png"></p>
-<h1 id="获取搬瓦工服务器的ip，端口，账号密码"><a href="#获取搬瓦工服务器的ip，端口，账号密码" class="headerlink" title="获取搬瓦工服务器的ip，端口，账号密码"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E8%8E%B7%E5%8F%96%E6%90%AC%E7%93%A6%E5%B7%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84ip%EF%BC%8C%E7%AB%AF%E5%8F%A3%EF%BC%8C%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81" title="获取搬瓦工服务器的ip，端口，账号密码" target="_blank" rel="noopener"></a>获取搬瓦工服务器的ip，端口，账号密码</h1><p>购买完毕后你就拥有一台你自己的服务器了，接着点击Services下的MyServices，可以看到你的服务器：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-c638f99160546260.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vpn6.png"></p>
-<p>我们点击「KiwiVM Control Panel」进入管理界面：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-51d8fc99eddce3c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vpn7.png"></p>
-<p>可以看到你服务器的信息:</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-7c1dd9887de06834.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vpn9.png"></p>
-<p>有了<a href="https://bwh1.net/aff.php?aff=32874" target="_blank" rel="noopener">搬瓦工</a>服务器的IP地址和端口,我们就可以连接了：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-0cc56bcad0a0c53d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pic1.png"></p>
-<p>账号是root，密码可以在这里获取：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-d5568b41bb8c483d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pic2.png"></p>
-<h1 id="使用-SSH-工具连接到搬瓦工服务器"><a href="#使用-SSH-工具连接到搬瓦工服务器" class="headerlink" title="使用 SSH 工具连接到搬瓦工服务器"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E4%BD%BF%E7%94%A8-SSH-%E5%B7%A5%E5%85%B7%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%90%AC%E7%93%A6%E5%B7%A5%E6%9C%8D%E5%8A%A1%E5%99%A8" title="使用 SSH 工具连接到搬瓦工服务器" target="_blank" rel="noopener"></a>使用 SSH 工具连接到搬瓦工服务器</h1><p><img src="https://upload-images.jianshu.io/upload_images/1975227-51bbc1cf4a4de921.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pic3.png"></p>
-<p>远程连接工具我一直用的是 <a href="https://www.vandyke.com/products/securecrt/" target="_blank" rel="noopener">SecureCRT</a> , 当然你也可以使用其它的 SSH 工具。<br>破解版的SecureCRT可以在百度网盘这里获取：</p>
-<ul>
-<li>链接: <a href="https://pan.baidu.com/s/11W4WHjCjmiNw6einQNrcPg" target="_blank" rel="noopener">https://pan.baidu.com/s/11W4WHjCjmiNw6einQNrcPg</a></li>
-<li>提取码: tyux</li>
-</ul>
-<h1 id="开始快读搭建ss服务器"><a href="#开始快读搭建ss服务器" class="headerlink" title="开始快读搭建ss服务器"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E5%BC%80%E5%A7%8B%E5%BF%AB%E8%AF%BB%E6%90%AD%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8" title="开始快读搭建ss服务器" target="_blank" rel="noopener"></a>开始快读搭建ss服务器</h1><h2 id="安装-wget-："><a href="#安装-wget-：" class="headerlink" title="安装 wget ："></a><a href="https://wistbean.github.io/banwagong-ss.html#%E5%AE%89%E8%A3%85-wget-%EF%BC%9A" title="安装 wget ：" target="_blank" rel="noopener"></a>安装 wget ：</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
-<h2 id="执行安装ss："><a href="#执行安装ss：" class="headerlink" title="执行安装ss："></a><a href="https://wistbean.github.io/banwagong-ss.html#%E6%89%A7%E8%A1%8C%E5%AE%89%E8%A3%85ss%EF%BC%9A" title="执行安装ss：" target="_blank" rel="noopener"></a>执行安装ss：</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br></pre></td></tr></table></figure>
-<h2 id="获取shadowsocks-sh读取权限"><a href="#获取shadowsocks-sh读取权限" class="headerlink" title="获取shadowsocks.sh读取权限"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E8%8E%B7%E5%8F%96shadowsocks-sh%E8%AF%BB%E5%8F%96%E6%9D%83%E9%99%90" title="获取shadowsocks.sh读取权限" target="_blank" rel="noopener"></a>获取shadowsocks.sh读取权限</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x shadowsocks.sh</span><br></pre></td></tr></table></figure>
-<h2 id="设置ss密码端口和加密方式"><a href="#设置ss密码端口和加密方式" class="headerlink" title="设置ss密码端口和加密方式"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E8%AE%BE%E7%BD%AEss%E5%AF%86%E7%A0%81%E7%AB%AF%E5%8F%A3%E5%92%8C%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F" title="设置ss密码端口和加密方式" target="_blank" rel="noopener"></a>设置ss密码端口和加密方式</h2><p>当你输入<code>./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</code>后就可以设置密码和端口号了：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-c4114dd85a412a55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ss1.png"></p>
-<p>设置完密码和端口号之后，我们选择加密方式，这里选择 7：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-b23683074df63634.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ss2.png"></p>
-<p>接着按任意键进行安装。</p>
-<h2 id="安装ss完成"><a href="#安装ss完成" class="headerlink" title="安装ss完成"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E5%AE%89%E8%A3%85ss%E5%AE%8C%E6%88%90" title="安装ss完成" target="_blank" rel="noopener"></a>安装ss完成</h2><p>等一会之后，就安装完成了，它会给你显示你需要连接vpn的信息：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-d705fa439fa029d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ss3.png"></p>
-<p>可以看到需要连接ss的ip地址，密码，端口，和加密方式。</p>
-<p>将这些信息保存起来，那么这时候你就可以使用它们来科学上网啦。</p>
-<h1 id="使用Shadowsocks"><a href="#使用Shadowsocks" class="headerlink" title="使用Shadowsocks"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E4%BD%BF%E7%94%A8Shadowsocks" title="使用Shadowsocks" target="_blank" rel="noopener"></a>使用Shadowsocks</h1><p>打开 Shadowsocks 客户端，输入ip地址，密码，端口，和加密方式。接着点击确定，右下角会有个小飞机按钮，右键–&gt;启动代理。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-3390aeef1c6cb606.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ss4.png"></p>
-<p>这时候就可以科学上网了。</p>
-<p>访问以下 Youtube 和 Google 试试看，速度还可以的：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-e2b26f12a49d280c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ss5.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-6eeebb68cafde6d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ss6.png"></p>
-<h1 id="使用BBR加速器"><a href="#使用BBR加速器" class="headerlink" title="使用BBR加速器"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E4%BD%BF%E7%94%A8BBR%E5%8A%A0%E9%80%9F%E5%99%A8" title="使用BBR加速器" target="_blank" rel="noopener"></a>使用BBR加速器</h1><p>让访问速度加速，飞起来！使用 BBR 加速工具。</p>
-<h2 id="安装-BBR"><a href="#安装-BBR" class="headerlink" title="安装 BBR"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E5%AE%89%E8%A3%85-BBR" title="安装 BBR" target="_blank" rel="noopener"></a>安装 BBR</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br></pre></td></tr></table></figure>
-<h2 id="获取读写权限"><a href="#获取读写权限" class="headerlink" title="获取读写权限"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E8%8E%B7%E5%8F%96%E8%AF%BB%E5%86%99%E6%9D%83%E9%99%90" title="获取读写权限" target="_blank" rel="noopener"></a>获取读写权限</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x bbr.sh</span><br></pre></td></tr></table></figure>
-<h2 id="启动BBR安装"><a href="#启动BBR安装" class="headerlink" title="启动BBR安装"></a><a href="https://wistbean.github.io/banwagong-ss.html#%E5%90%AF%E5%8A%A8BBR%E5%AE%89%E8%A3%85" title="启动BBR安装" target="_blank" rel="noopener"></a>启动BBR安装</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure>
-<p>接着按任意键，开始安装，坐等一会。安装完成一会之后它会提示我们是否重新启动vps，我们输入 y 确定重启服务器。</p>
-<p>重新启动之后，输入 <code>lsmod | grep bbr</code> 如果看到 tcp_bbr 就说明 BBR 已经启动了。</p>
-<p>再访问一下 Youtube，1080p 超高清，很顺畅不卡顿！</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1975227-464f2992c6db74a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ss7.png"></p>
-<p>本文为转载，出处 <a href="https://www.cnbanwagong.com/6.html" target="_blank" rel="noopener">https://www.cnbanwagong.com/6.html</a></p>
+            <h1 id="BlueUtils"><a href="#BlueUtils" class="headerlink" title="BlueUtils"></a>BlueUtils</h1><p>经典蓝牙搜索，连接，数据传输小DEMO</p>
+<p>通过经典模式 搜索 蓝牙应用。蓝牙有蓝牙1.0、蓝牙2.0、蓝牙3.0、蓝牙4.0之类的以数字结尾的蓝牙版本号，而实际上，在最新的标准中，已经不再使用数字版本号作为蓝牙版本的区分了，取而代之的是经典蓝牙与低功耗蓝牙（BLE）这两种区别。BLE 蓝牙不做过多讲解。具体的信息大家可以参考。</p>
+<p><a href="https://www.jianshu.com/p/fc46c154eb77" target="_blank" rel="noopener">https://www.jianshu.com/p/fc46c154eb77</a> (经典蓝牙)  <a href="https://www.jianshu.com/p/3a372af38103" target="_blank" rel="noopener">https://www.jianshu.com/p/3a372af38103</a> (BLE蓝牙)<br><a id="more"></a></p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>  发现设备-&gt;配对/绑定设备-&gt;建立连接-&gt;数据通信</p>
+<p>  经典蓝牙和低功耗蓝牙除了配对/绑定这个环节是一样的之外，其它三个环节都是不同的。</p>
+<h1 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h1><p><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-37-407_com.calypso.bu.png" alt="image"></p>
+<p><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-55-50-702_com.calypso.bu.png" alt="image"><br><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-07-909_com.calypso.bu.png" alt="image"><br><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-16-064_com.calypso.bu.png" alt="image"><br><img src="https://raw.githubusercontent.com/moruoyiming/BlueUtils/master/pics/Screenshot_2018-01-03-14-56-31-043_com.calypso.bu.png" alt="image"></p>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><p>  公司最近在要做一个蓝牙与串口通讯的项目，然后就涉及到手机端与蓝牙的连接及数据交互。大致需求就是通过手机搜索硬件蓝牙<br>  设备，然后连接上蓝牙，通过手机端的指令消息来获取串口信息，在通过蓝牙返回数据到手机端。在这之前看了一些开源的项目，<br>  包括BluetoothKit，FastBle，BluetoothHelper等其中BluetoothKit和FastBle只支持BLE 模式蓝牙，因为硬件的模式是<br>  经典模式，后来自己在两个项目的基础上做了一些修改，然后可以搜索到经典蓝牙。但是怎么也是连接不上我们的硬件设备。（应<br>  该是底层不是经典蓝牙连接导致。）后来发现了BluetoothHelper项目。在这个项目的基础上做了一些修改及优化 ，能够满足<br>  项目需求，现在将这个项目做了分包及优化。然后在这分享自己的一些踩坑心得。</p>
+<h1 id="第一步：声明所需要的权限"><a href="#第一步：声明所需要的权限" class="headerlink" title="第一步：声明所需要的权限"></a>第一步：声明所需要的权限</h1><pre><code>&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot;/&gt; 使用蓝牙所需要的权限
+&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&gt; 使用扫描和设置蓝牙的权限（申明这一个权限必须申明上面一个权限）
 
+在Android5.0之前，是默认申请GPS硬件功能的。而在Android 5.0 之后，需要在manifest 中申明GPS硬件模块功能的使用。
+
+    &lt;!-- Needed only if your app targets Android 5.0 (API level 21) or higher. --&gt;
+    &lt;uses-feature android:name=&quot;android.hardware.location.gps&quot; /&gt;
+
+在 Android 6.0 及以上，还需要打开位置权限。如果应用没有位置权限，蓝牙扫描功能不能使用（其它蓝牙操作例如连接蓝牙设备和写入数据不受影响）。
+
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;/&gt;
+</code></pre><h1 id="第二步：初始化实例"><a href="#第二步：初始化实例" class="headerlink" title="第二步：初始化实例"></a>第二步：初始化实例</h1><pre><code>在页面首先初始化一个BlueManager。
+
+private BlueManager bluemanage;
+
+bluemanage = BlueManager.getInstance(getApplicationContext());
+</code></pre><h1 id="第三步：设置实例监听"><a href="#第三步：设置实例监听" class="headerlink" title="第三步：设置实例监听"></a>第三步：设置实例监听</h1><p>   然后为这个蓝牙管理器设置监听(OnSearchDeviceListener，OnConnectListener，OnSendMessageListener，OnReceiveMessageListener)</p>
+<pre><code>/**
+    * 初始化蓝牙管理，设置监听
+    */
+   public void initBlueManager() {
+       bluemanage = BlueManager.getInstance(getApplicationContext());
+       bluemanage.setOnSearchDeviceListener(onSearchDeviceListener);
+       bluemanage.setOnConnectListener(onConnectListener);
+       bluemanage.setOnSendMessageListener(onSendMessageListener);
+       bluemanage.setOnReceiveMessageListener(onReceiveMessageListener);
+       bluemanage.requestEnableBt();
+   }
+</code></pre><h1 id="第四步：开启蓝牙搜索蓝牙设备"><a href="#第四步：开启蓝牙搜索蓝牙设备" class="headerlink" title="第四步：开启蓝牙搜索蓝牙设备"></a>第四步：开启蓝牙搜索蓝牙设备</h1><pre><code>通过调用 bluemanage.requestEnableBt()开启蓝牙，
+
+调用searchDevices 获取蓝牙设备。在做蓝牙操作前，要确保各个监听器已经设置好。
+
+搜索监听如下：
+
+      onSearchDeviceListener =new OnSearchDeviceListener() {
+                @Override
+                public void onStartDiscovery() {
+                    Log.d(TAG, &quot;onStartDiscovery()&quot;);
+                }
+
+                @Override
+                public void onNewDeviceFound(BluetoothDevice device) {
+                    Log.d(TAG, &quot;new device: &quot; + device.getName() + &quot; &quot; + device.getAddress());
+                }
+
+                @Override
+                public void onSearchCompleted(List&lt;BluetoothDevice&gt; bondedList, List&lt;BluetoothDevice&gt; newList) {
+                    Log.d(TAG, &quot;SearchCompleted: bondedList&quot; + bondedList.toString());
+                    Log.d(TAG, &quot;SearchCompleted: newList&quot; + newList.toString());
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+</code></pre><p>   通过 BlueManager里的searchDevices方法，里边其实就是获取了一个BluetoothAdapter然后，通过调用mBluetoothAda<br>   pter.startDiscovery()方法来搜索经典蓝牙设备。这里如果调用 mBluetoothAdapter.startLeScan(mLeScanCallback);<br>   搜索的就是BLE蓝牙。然后在这之前需要动态注册一个BroadcastReceiver来监听 蓝牙的搜索情况，在通过onReceive中去判<br>   断设备的类型，是不是新设备，是不是已经连接过。将设备加入集合当中。</p>
+<p>   搜索代码如下</p>
+<pre><code>/**
+ * discovery the devices.
+ */
+public void searchDevices() {
+    try {
+        if (mCurrStatus == STATUS.FREE) {
+            mCurrStatus = STATUS.DISCOVERING;
+            checkNotNull(mOnSearchDeviceListener);
+            if (mBondedList == null) mBondedList = new ArrayList&lt;&gt;();
+            if (mNewList == null) mNewList = new ArrayList&lt;&gt;();
+            if (mBluetoothAdapter == null) {
+                mOnSearchDeviceListener.onError(new NullPointerException(DEVICE_HAS_NOT_BLUETOOTH_MODULE));
+                return;
+            }
+            if (mReceiver == null) mReceiver = new Receiver();
+            // ACTION_FOUND
+            IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+            mContext.registerReceiver(mReceiver, filter);
+            // ACTION_DISCOVERY_FINISHED
+            filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+            mContext.registerReceiver(mReceiver, filter);
+            mNeed2unRegister = true;
+            mBondedList.clear();
+            mNewList.clear();
+            if (mBluetoothAdapter.isDiscovering())  //先判断是否在扫描
+                mBluetoothAdapter.cancelDiscovery();//取消扫描
+            mBluetoothAdapter.startDiscovery();     //开始扫描蓝牙
+            mOnSearchDeviceListener.onStartDiscovery();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+</code></pre><h1 id="第五步：连接蓝牙设备"><a href="#第五步：连接蓝牙设备" class="headerlink" title="第五步：连接蓝牙设备"></a>第五步：连接蓝牙设备</h1><p>   当调用connectDevice(mac)方法时，因为连接蓝牙是一很耗时的操作，所以需要开启一个线程去连接蓝牙。</p>
+<pre><code> /**
+  * 连接bluetooth
+  *
+  * @param mac
+  */
+ public void connectDevice(String mac) {
+     try {
+         if (mCurrStatus != STATUS.CONNECTED) {
+             if (mac == null || TextUtils.isEmpty(mac))
+                 throw new IllegalArgumentException(&quot;mac address is null or empty!&quot;);
+             if (!BluetoothAdapter.checkBluetoothAddress(mac))
+                 throw new IllegalArgumentException(&quot;mac address is not correct! make sure it&apos;s upper case!&quot;);
+             if (mReadable = false) {
+                 mReadable = true;
+             }
+             if (mWritable = false) {
+                 mWritable = true;
+             }
+             if (onConnectListener != null) {
+                 onConnectListener.onConnectStart();
+                 ConnectDeviceRunnable connectDeviceRunnable = new ConnectDeviceRunnable(mac);
+                 checkNotNull(mExecutorService);
+                 mExecutorService.submit(connectDeviceRunnable);
+             }
+         } else {
+             Log.i(&quot;blue&quot;, &quot;the blue is connected !&quot;);
+         }
+     } catch (IllegalArgumentException e) {
+         e.printStackTrace();
+     }
+ }
+
+在连接的线程run方法中，通过调用mBluetoothAdapter.getRemoteDevice 获取远程蓝牙信息，通过
+createInsecureRfcommSocketToServiceRecord获得一个与远程蓝牙的socket连接。通过这个socket连接获取输入
+流和输出流进行数据的读写。
+
+      if (onConnectListener == null) {
+            Log.i(&quot;blue&quot;, &quot;the connectListener is null !&quot;);
+            return;
+        }
+        BluetoothDevice remoteDevice = mBluetoothAdapter.getRemoteDevice(mac);
+        mBluetoothAdapter.cancelDiscovery();
+        mCurrStatus = STATUS.FREE;
+        Log.d(TAG, &quot;prepare to connect: &quot; + remoteDevice.getAddress() + &quot; &quot; + remoteDevice.getName());
+        mSocket = remoteDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(Constants.STR_UUID));
+        onConnectListener.onConnectting();
+        mSocket.connect();
+        mInputStream = mSocket.getInputStream();
+        mOutputStream = mSocket.getOutputStream();
+        mCurrStatus = STATUS.CONNECTED;
+        onConnectListener.onConectSuccess();
+</code></pre><h1 id="第六步：向蓝牙设备发送消息"><a href="#第六步：向蓝牙设备发送消息" class="headerlink" title="第六步：向蓝牙设备发送消息"></a>第六步：向蓝牙设备发送消息</h1><pre><code>当设备连接成功之后，就可以给蓝牙设备发送消息了。 通过调用bluemanage.sendMessage(MessageBean mesaage，
+needResponse)方法，在bluemange里会开起一个WriteRunnable写线程和一个ReadRunnable去获取输入流和输出流
+的实时数据，读线程只会在第一次发消息时初始化一次。以后都是用这个线程去读从蓝牙返回的数据。写数据的线程
+在每次调用的时候都会从新初始化。(待优化)
+
+ 在WriteRunnable中的润写数据
+   writer.write(item.text);
+   writer.newLine();
+   writer.flush();
+
+在WriteRunnable 的run方法中通过mOutputStream流将数据传送给蓝牙设备,当蓝牙接受到消息之后会和串口进行
+通信，具体的通信协议是根据各个厂商自己协商的。当串口接受数据执行操作，获取数据然后在返回数据给蓝牙，蓝
+牙也就有返回数据。
+</code></pre><h1 id="第七步：从蓝牙设备读取消息"><a href="#第七步：从蓝牙设备读取消息" class="headerlink" title="第七步：从蓝牙设备读取消息"></a>第七步：从蓝牙设备读取消息</h1><pre><code>在ReadRunnable中从mInputStream里不断的读取数据。这里有一个问题，就是有的时候从蓝牙
+口读取的数据并不是一个完整的数据，这里是一个坑。首先你需要知道你需要什么数据，什么格式，数据的长度。这
+里我们的数据的格式类似是一帧一帧，而且我们的帧长度固定大小是10。那么我们就可以在这里做一些你想做的事了。
+</code></pre><h1 id="坑-有时候从蓝牙socket-中读取的数据不完整"><a href="#坑-有时候从蓝牙socket-中读取的数据不完整" class="headerlink" title="坑 有时候从蓝牙socket 中读取的数据不完整"></a>坑 有时候从蓝牙socket 中读取的数据不完整</h1><pre><code>读数据不完整，是因为我们开启线程之后会一直读，有时候蓝牙并没有返回数据，或者没有返回完整数据，这个时候
+我们需要在这做一些特殊处理。
+
+        int count = 0;
+        while (count == 0) {
+            count = stream.available();//输入流中的数据个数。
+        }
+
+通过以上代码可以确保读的数据不会是0。通过下边的代码可以确保读到完整数据之后才会走我的回调，保证了数据
+的完整性。这里的what只是我用来区分当前读到的数据是进度信息，还是真正想要的信息。
+
+        if (onReceiveMessageListener == null) {
+            Log.i(&quot;blue&quot;, &quot;the receiverMessageListener is null !&quot;);
+            return;
+        }
+        mReadable = true;
+        InputStream stream = mInputStream;
+        while (mCurrStatus != STATUS.CONNECTED &amp;&amp; mReadable) ;
+        checkNotNull(stream);
+        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+        StringBuilder builder = new StringBuilder();
+        while (mReadable) {
+            int count = 0;
+            while (count == 0) {
+                count = stream.available();//输入流中的数据个数。
+            }
+            if (count == 10 &amp;&amp; what) {
+                int num = stream.read(buffer);
+                String progress = TypeConversion.bytesToHexStrings(buffer);
+                Log.i(&quot;progress&quot;, progress);
+                onReceiveMessageListener.onProgressUpdate(progress, 0);
+            } else if (count &gt;= 10) {
+                what = false;
+                int num = stream.read(buffer);
+                String detect = TypeConversion.bytesToHexStrings(buffer);
+                builder.append(detect);
+                Log.i(&quot;detect&quot;, detect);
+                if (detect.endsWith(&quot;04 &quot;)) {
+                    number++;
+                }
+                if (number == 5) {
+                    onReceiveMessageListener.onDetectDataFinish();
+                    onReceiveMessageListener.onNewLine(builder.toString().trim());
+                    builder.delete(0, builder.length());
+                } else {
+                    onReceiveMessageListener.onDetectDataUpdate(detect);
+                }
+            }
+        }
+
+ 当读到满足条件的完整数据，就会调用ReceiveMessageListener 中的各个方法。到这里从蓝牙读取数据的流程，
+ 大致介绍完。
+</code></pre><h1 id="下边是BlueManager提供的一些方法："><a href="#下边是BlueManager提供的一些方法：" class="headerlink" title="下边是BlueManager提供的一些方法："></a>下边是BlueManager提供的一些方法：</h1><pre><code>requestEnableBt()    开启蓝牙
+
+searchDevices()      搜索蓝牙设备
+
+connectDevice()      连接蓝牙设备
+
+closeDevice()        断开蓝牙连接
+
+sendMessage()        发送消息
+
+close()              关闭销毁蓝牙
+</code></pre><h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><pre><code>BlueManager大概的使用流程及大致原理就说到这里，口才不是很好，平常也不怎么写博客，有什么问题大家可以
+探讨一下。项目代码部分参考BluetoothHelper 项目，在此基础上做了一些分包优化。如有雷同，不属巧合，
+我就是抄的你的。哈哈哈哈~~  希望对那些在踩蓝牙坑的小伙伴有帮助~~~
+</code></pre><h1 id="Contact-Me"><a href="#Contact-Me" class="headerlink" title="Contact Me"></a>Contact Me</h1><pre><code>QQ: 798774875
+Email: moruoyiming123@gmail.com
+GitHub: https://github.com/moruoyiming
+</code></pre>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/ss/">ss</a>, <a class="has-link-grey -link" href="/tags/搬瓦工/">搬瓦工</a>, <a class="has-link-grey -link" href="/tags/翻墙/">翻墙</a>
+                    <a class="has-link-grey -link" href="/tags/Android/">Android</a>, <a class="has-link-grey -link" href="/tags/蓝牙开发/">蓝牙开发</a>
                 </div>
             </div>
         </div>
@@ -304,17 +476,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/26/SO文件缺失/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Android 项目中so文件丢失</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/20/SSH常用命令/">
-                <span class="level-item">SSH通用命令</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/11/热修复技术原理总结/">
+                <span class="level-item">热修复技术原理总结</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -605,7 +770,26 @@
         
         <article class="media">
             
-            <a href="/2019/10/10/热修复技术原理总结/" class="media-left">
+            <a href="/2019/10/11/Android经典蓝牙通讯传输DEMO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/sculpture.jpg" alt="Android 经典蓝牙通讯传输Demo">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:27:28.245Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/Android经典蓝牙通讯传输DEMO/" class="has-link-black-ter is-size-6">Android 经典蓝牙通讯传输Demo</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/热修复技术原理总结/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/gallery/thumbnails/plant.jpg" alt="热修复技术原理总结">
                 </p>
@@ -613,8 +797,8 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T11:23:02.634Z">2019-10-10</time></div>
-                    <a href="/2019/10/10/热修复技术原理总结/" class="has-link-black-ter is-size-6">热修复技术原理总结</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:26:43.248Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/热修复技术原理总结/" class="has-link-black-ter is-size-6">热修复技术原理总结</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
                     </p>
@@ -624,64 +808,7 @@
         
         <article class="media">
             
-            <a href="/2019/02/26/SO文件缺失/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/plant.jpg" alt="Android 项目中so文件丢失">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-26T14:21:38.581Z">2019-02-26</time></div>
-                    <a href="/2019/02/26/SO文件缺失/" class="has-link-black-ter is-size-6">Android 项目中so文件丢失</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="快速手动搭建SS服务器简明详细教程">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-21T06:59:50.224Z">2019-02-21</time></div>
-                    <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/02/20/SSH常用命令/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH通用命令">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T12:35:05.643Z">2019-02-20</time></div>
-                    <a href="/2019/02/20/SSH常用命令/" class="has-link-black-ter is-size-6">SSH通用命令</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2018/12/19/README/" class="media-left">
+            <a href="/2019/10/11/README/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="ADB命令大全(转)">
                 </p>
@@ -689,8 +816,46 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-12-18T20:17:54.000Z">2018-12-19</time></div>
-                    <a href="/2018/12/19/README/" class="has-link-black-ter is-size-6">ADB命令大全(转)</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:26:11.251Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/README/" class="has-link-black-ter is-size-6">ADB命令大全(转)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/sculpture.jpg" alt="快速手动搭建SS服务器简明详细教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:24:29.240Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/SerialportManager/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="JNI 串口通讯库 SerialPort开发封装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:24:29.223Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/SerialportManager/" class="has-link-black-ter is-size-6">JNI 串口通讯库 SerialPort开发封装</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
                     </p>
@@ -716,7 +881,7 @@
                     <span class="level-item">十月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -727,40 +892,7 @@
                     <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -908,7 +1040,26 @@
         
         <article class="media">
             
-            <a href="/2019/10/10/热修复技术原理总结/" class="media-left">
+            <a href="/2019/10/11/Android经典蓝牙通讯传输DEMO/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/sculpture.jpg" alt="Android 经典蓝牙通讯传输Demo">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:27:28.245Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/Android经典蓝牙通讯传输DEMO/" class="has-link-black-ter is-size-6">Android 经典蓝牙通讯传输Demo</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/热修复技术原理总结/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/gallery/thumbnails/plant.jpg" alt="热修复技术原理总结">
                 </p>
@@ -916,8 +1067,8 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-10T11:23:02.634Z">2019-10-10</time></div>
-                    <a href="/2019/10/10/热修复技术原理总结/" class="has-link-black-ter is-size-6">热修复技术原理总结</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:26:43.248Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/热修复技术原理总结/" class="has-link-black-ter is-size-6">热修复技术原理总结</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
                     </p>
@@ -927,64 +1078,7 @@
         
         <article class="media">
             
-            <a href="/2019/02/26/SO文件缺失/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/plant.jpg" alt="Android 项目中so文件丢失">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-26T14:21:38.581Z">2019-02-26</time></div>
-                    <a href="/2019/02/26/SO文件缺失/" class="has-link-black-ter is-size-6">Android 项目中so文件丢失</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="快速手动搭建SS服务器简明详细教程">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-21T06:59:50.224Z">2019-02-21</time></div>
-                    <a href="/2019/02/21/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/02/20/SSH常用命令/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SSH通用命令">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-20T12:35:05.643Z">2019-02-20</time></div>
-                    <a href="/2019/02/20/SSH常用命令/" class="has-link-black-ter is-size-6">SSH通用命令</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2018/12/19/README/" class="media-left">
+            <a href="/2019/10/11/README/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="ADB命令大全(转)">
                 </p>
@@ -992,8 +1086,46 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-12-18T20:17:54.000Z">2018-12-19</time></div>
-                    <a href="/2018/12/19/README/" class="has-link-black-ter is-size-6">ADB命令大全(转)</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:26:11.251Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/README/" class="has-link-black-ter is-size-6">ADB命令大全(转)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/sculpture.jpg" alt="快速手动搭建SS服务器简明详细教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:24:29.240Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/搬瓦工快速手动搭建SS(Shadowsocks)服务器/" class="has-link-black-ter is-size-6">快速手动搭建SS服务器简明详细教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/科学上网/">科学上网</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/11/SerialportManager/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/desert.jpg" alt="JNI 串口通讯库 SerialPort开发封装">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-11T01:24:29.223Z">2019-10-11</time></div>
+                    <a href="/2019/10/11/SerialportManager/" class="has-link-black-ter is-size-6">JNI 串口通讯库 SerialPort开发封装</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/安卓开发/">安卓开发</a>
                     </p>
@@ -1019,7 +1151,7 @@
                     <span class="level-item">十月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1030,40 +1162,7 @@
                     <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1203,7 +1302,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="快速手动搭建SS服务器简明详细教程" height="28">
+                    <img src="/images/logo.svg" alt="Android 经典蓝牙通讯传输Demo" height="28">
                 
                 </a>
                 <p class="is-size-7">
