@@ -15,9 +15,9 @@
 <p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-151610%402x.png" alt="image"></p>
 <p>   点击按钮进入 </p>
 <p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-151818%402x.png" alt="image"></p>
-<p>   或者进入<a href="http://www.androiddevtools.cn/" target="_blank" rel="noopener">http://www.androiddevtools.cn/</a> 下载</p>
-<p>   <a href="https://dl.google.com/android/repository/android-ndk-r16-beta1-windows-x86_64.zip?utm_source=androiddevtools&amp;utm_medium=website?raw=true" target="_blank" rel="noopener">Windows 64-bit</a></p>
-<p>   <a href="https://dl.google.com/android/repository/android-ndk-r16-beta1-darwin-x86_64.zip?utm_source=androiddevtools&amp;utm_medium=website?raw=true" target="_blank" rel="noopener">Mac OS X</a></p>
+<p>   或者进入<a href="http://www.androiddevtools.cn/">http://www.androiddevtools.cn/</a> 下载</p>
+<p>   <a href="https://dl.google.com/android/repository/android-ndk-r16-beta1-windows-x86_64.zip?utm_source=androiddevtools&amp;utm_medium=website?raw=true">Windows 64-bit</a></p>
+<p>   <a href="https://dl.google.com/android/repository/android-ndk-r16-beta1-darwin-x86_64.zip?utm_source=androiddevtools&amp;utm_medium=website?raw=true">Mac OS X</a></p>
 <p>   如单独下载</p>
 <pre><code>1). 解压NDK的zip包，注意路径目录不要出现空格和中文，这里建议大家把包解压到SDK目录里面，并命名为ndk-bundle，好处是，启动AS的时候会检查它并直接添加到ndk.dir中，减少我们的配置工作；
 
@@ -43,7 +43,7 @@
    }
 </code></pre><p>   如图</p>
 <p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-164512%402x.png" alt="image"></p>
-<p>   Android.mk 文件中配置如下内容   <a href="https://www.cnblogs.com/reality-soul/p/6893248.html" target="_blank" rel="noopener">Android.mk用法详解</a></p>
+<p>   Android.mk 文件中配置如下内容   <a href="https://www.cnblogs.com/reality-soul/p/6893248.html">Android.mk用法详解</a></p>
 <pre><code>#
 # Copyright 2009 Cedric Priscal
 # 
@@ -315,12 +315,12 @@ JNIEXPORT void JNICALL Java_com_serialport_library_core_SerialPort_close
 }
 </code></pre><h2 id="到此-NDK-项目搭建完成。接下来-介绍一下-SerialPortManager-类库"><a href="#到此-NDK-项目搭建完成。接下来-介绍一下-SerialPortManager-类库" class="headerlink" title="到此 NDK 项目搭建完成。接下来 介绍一下 SerialPortManager 类库"></a>到此 NDK 项目搭建完成。接下来 介绍一下 SerialPortManager 类库</h2><p>   下图为类库的介绍</p>
 <p>   <img src="https://github.com/moruoyiming/SerialportManager/blob/master/pics/QQ20180503-181007%402x.png" alt="image"></p>
-<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/core/SerialPort.java" target="_blank" rel="noopener">SerialPort.java</a>  封装底层开关串口方法</p>
-<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/core/SerialPortFinder.java" target="_blank" rel="noopener">SerialPortFinder.java</a> 获取所有串口方法</p>
-<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/listener/OnS3DataReceiverListener.java" target="_blank" rel="noopener">OnS3DataReceiverListener.java</a> 和 <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/listener/OnS6DataReceiverListener.java" target="_blank" rel="noopener">OnS6DataReceiverListener.java</a>  是串口响应数据监听。当接收到串口数据会调</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/core/SerialPort.java">SerialPort.java</a>  封装底层开关串口方法</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/core/SerialPortFinder.java">SerialPortFinder.java</a> 获取所有串口方法</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/listener/OnS3DataReceiverListener.java">OnS3DataReceiverListener.java</a> 和 <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/listener/OnS6DataReceiverListener.java">OnS6DataReceiverListener.java</a>  是串口响应数据监听。当接收到串口数据会调</p>
 <p>   接口方法，我们的硬件设备S3口监听主板数据，S6口监听硬件屏幕数据。</p>
-<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/protocol/BaseProtocol.java" target="_blank" rel="noopener">BaseProtocol.java</a> 提供指令封装方法。根据各个设备硬件串口协议，继承、封装。</p>
-<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/SerialportManager.java" target="_blank" rel="noopener">SerialportManager.java</a>  串口管理对象</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/protocol/BaseProtocol.java">BaseProtocol.java</a> 提供指令封装方法。根据各个设备硬件串口协议，继承、封装。</p>
+<p>   <a href="https://github.com/moruoyiming/SerialportManager/blob/master/serialportlibrary/src/main/java/com/serialport/library/SerialportManager.java">SerialportManager.java</a>  串口管理对象</p>
 <h2 id="SerialportManager-java"><a href="#SerialportManager-java" class="headerlink" title="SerialportManager.java"></a>SerialportManager.java</h2><p>   串口管理对象，该对象为单例。底层对 SerialPort  进行封装、管理。</p>
 <pre><code>private SerialPort mSerialPort; 
 
