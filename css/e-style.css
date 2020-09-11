@@ -1,0 +1,8 @@
+body {
+  background: url("/img/background.png");
+}
+.night .navbar,
+.night footer.footer,
+.night .card {
+  background-color: rgba(21,19,19,0.678);
+}
